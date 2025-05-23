@@ -1,21 +1,16 @@
 import Toptitle from "../components/toptitle/toptitle";
-import DynamicStickyHeader from "../components/DynamicStickyHeader/DynamicStickyHeader";
-import Footer from "../components/footer/footer";
 import Title from "../components/title/title";
 import Achievement from "../components/achievement/achievement";
+import DynamicStickyHeader from "../components/DynamicStickyHeader/DynamicStickyHeader";
 
-export default function Layout({ children }) {
-    return (
-        <html lang="ja">
-      <body>
+export default function LectureLayout({ children }) {
+  return (
+    <>
       <Toptitle />
-      <Title headline="研究実績"/>
+      <Title headline="講演・レクチャー" />
       <Achievement />
       <DynamicStickyHeader />
-        {children} {/* ここにメインコンテンツが差し込まれる */}
-        <Footer />
-      </body>
-      </html>
-    );
-  }
-  
+      {children}
+    </>
+  );
+}

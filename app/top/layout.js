@@ -1,14 +1,9 @@
-import Footer from "../components/footer/footer";
-
-
-export default function Layout({ children }) {
-    return (
-        <html lang="ja">
-      <body>
-        {children} {/* ここにメインコンテンツが差し込まれる */}
-        <Footer />
-      </body>
-      </html>
-    );
-  }
-  
+export default function TopLayout({ children }) {
+  return (
+    // このレイアウトでは <html>/<body> は書かず、
+    // ルートレイアウトがくるまれている想定です
+    <>
+      {children}
+    </>
+  )
+}

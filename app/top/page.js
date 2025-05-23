@@ -1,16 +1,16 @@
-import Toptitle from "../components/toptitle/toptitle";
-import Navigation from "../components/navigation/navigation";
-import TopBord from "../components/top_bord/top_bord"; // TopBord コンポーネントをインポート
-import Newscardlist from "../components/newscardlist/newscardlist";
-import ProjectCardList from "../components/projectcardlist/projectcardlist";
-import TopPageContent from "../components/TopPageContent/TopPageContent";
-import InternalNavigation from "../components/InternalNavigation/InternalNavigation";
-import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader";
-import Parser from "rss-parser";
+import Toptitle from "../components/toptitle/toptitle"
+import Navigation from "../components/navigation/navigation"
+import TopBord from "../components/top_bord/top_bord"
+import Newscardlist from "../components/newscardlist/newscardlist"
+import ProjectCardList from "../components/projectcardlist/projectcardlist"
+import TopPageContent from "../components/TopPageContent/TopPageContent"
+import InternalNavigation from "../components/InternalNavigation/InternalNavigation"
+import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader"
+import Parser from "rss-parser"
 
-export const revalidate = 60;
+export const revalidate = 60
 
-export default async function TOPPage() {
+export default async function TopPage() {
   const parser = new Parser({
     customFields: {
       item: [
@@ -18,29 +18,27 @@ export default async function TOPPage() {
         ["media:thumbnail", "thumbnail"],
       ],
     },
-  });
+  })
 
-  const feed = await parser.parseURL("https://note.com/rich_hebe819/rss");
+  const feed = await parser.parseURL("https://note.com/rich_hebe819/rss")
 
-  const filteredItems = feed.items.filter(
-    (item) => item.title && item.title.includes("お知らせ")
-  );
-  const articles = filteredItems.map((item) => ({
-    date: item.pubDate ?? "日付不明",
-    title: item.title,
-    link: item.link,
-  }));
+  const articles = feed.items
+    .filter((item) => item.title?.includes("お知らせ"))
+    .map((item) => ({
+      date: item.pubDate ?? "日付不明",
+      title: item.title,
+      link: item.link,
+    }))
 
-  const projectItems = feed.items.filter(
-    (item) => item.title && item.title.includes("project")
-  );
-  const projectArticles = projectItems.map((item) => ({
-    date: item.pubDate ?? "日付不明",
-    title: item.title,
-    thumbnail: item.thumbnail || "/sample_project.jpg",
-    creatorImage: item.creatorImage || "/default_user.jpg",
-    link: item.link,
-  }));
+  const projectArticles = feed.items
+    .filter((item) => item.title?.includes("project"))
+    .map((item) => ({
+      date: item.pubDate ?? "日付不明",
+      title: item.title,
+      thumbnail: item.thumbnail || "/sample_project.jpg",
+      creatorImage: item.creatorImage || "/default_user.jpg",
+      link: item.link,
+    }))
 
   return (
     <main>
@@ -60,7 +58,6 @@ export default async function TOPPage() {
         </div>
       </div>
 
-      {/* Navigation コンポーネント */}
       <Navigation
         navicopy="はじめに"
         naviname="シチズンサイエンスについて"
@@ -70,13 +67,13 @@ export default async function TOPPage() {
         imageHoverPath="/go 1 b.png"
       />
 
-      <Navigation 
-      navicopy="つぎに"
-      naviname="研究業績" 
-      naviexplanation="論文、学会発表、書籍など当センターの研究業績のアーカイブをご覧いただけます。"
-      link="/research" 
-      imagePath="/go 1 a.png"
-      imageHoverPath="/go 1 b.png"
+      <Navigation
+        navicopy="つぎに"
+        naviname="研究業績"
+        naviexplanation="論文、学会発表、書籍など当センターの研究業績のアーカイブをご覧いただけます。"
+        link="/research"
+        imagePath="/go 1 a.png"
+        imageHoverPath="/go 1 b.png"
       />
 
       <Navigation
@@ -89,22 +86,15 @@ export default async function TOPPage() {
         imageHoverPath="/go 3 b.png"
       />
 
-      {/* TopBord コンポーネントでセクションのタイトルを表示 */}
       <div id="subtitle1" className="anchorSection">
-        <TopBord
-          bordname="お知らせ"
-          notelink="noteへ"
-        />
+        <TopBord bordname="お知らせ" notelink="noteへ" />
       </div>
       <Newscardlist data={articles} />
 
       <div id="subtitle2" className="anchorSection">
-        <TopBord
-          bordname="現在進行中のプロジェクト"
-          notelink="noteへ"
-        />
+        <TopBord bordname="現在進行中のプロジェクト" notelink="noteへ" />
       </div>
       <ProjectCardList data={projectArticles} />
     </main>
-  );
+  )
 }

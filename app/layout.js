@@ -1,20 +1,13 @@
-import "./globals.css";
+import "./globals.css"
+import Footer from "./components/footer/footer"
 
-export const metadata = {
-  title: "My Next.js App",
-  description: "Example app with custom fonts",
-};
-
-
-export default function Layout({ children }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="ja">
       <body>
-        {/* 共通のヘッダーやナビゲーションを入れるならここ */}
-        {/* 共通のヘッダーやナビゲーションを入れるならここ */}
-        {children} 
-        {/* 共通のフッターなどを入れるならここ */}
+        {children}
+        <Footer />
       </body>
     </html>
-  );
+  )
 }

@@ -1,19 +1,14 @@
-    import Toptitle from "../components/toptitle/toptitle";
-import Footer from "../components/footer/footer";
+import Toptitle from "../components/toptitle/toptitle";
 import Title from "../components/title/title";
 import Achievement from "../components/achievement/achievement";
 
-export default function Layout({ children }) {
-    return (
-        <html lang="ja">
-      <body>
+export default function ConferenceLayout({ children }) {
+  return (
+    <>
       <Toptitle />
-      <Title headline="研究実績"/>
+      <Title headline="会議・コンファレンス" />
       <Achievement />
-        {children} {/* ここにメインコンテンツが差し込まれる */}
-        <Footer />
-      </body>
-      </html>
-    );
-  }
-  
+      {children}
+    </>
+  );
+}
