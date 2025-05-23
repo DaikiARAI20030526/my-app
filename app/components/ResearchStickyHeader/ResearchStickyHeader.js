@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Header from "../header/header";
-import styles from "./researchStickyHeader.module.css";
+import styles from "./ResearchStickyHeader.module.css";
 
 export default function ResearchStickyHeader({ pageTitles, subtitleIds }) {
   // 初期タイトルは配列の最初の要素

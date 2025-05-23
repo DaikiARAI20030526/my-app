@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Header from "../header/header";
-import styles from "./dynamicStickyHeader.module.css";
+import styles from "./DynamicStickyHeader.module.css";
 
 // デフォルト値 [] を設定
 export default function DynamicStickyHeader({ titleArray = [] }) {
