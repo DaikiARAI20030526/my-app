@@ -1,0 +1,215 @@
+/* book ページの基本スタイル */
+
+.book {
+  width: 100%;
+  height: auto;
+}
+
+.book_bottomline {
+  width: 89.4%;
+  border-bottom: 0.3px solid #d9d9d9;
+  margin: 0 auto;         /* コンテナ自体を中央配置 */
+  display: flex;
+  justify-content: center; /* 横方向の中央揃え */
+  align-items: center;     
+}
+
+/* 内側コンテナ */
+.book_inner {
+  width: auto;
+  padding: 86px 8.5% 96px 8.5%;
+  display: flex;
+}
+
+/* 左カラム */
+.book_inner_left {
+  width: 45%;
+  display: flex;
+  flex-flow: column;
+  gap: 30px;
+}
+
+/* タイトル */
+.book_inner_left_title {
+  width: auto;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 4.14px;
+  margin-top: 0;
+  padding-bottom: 30px;
+}
+
+/* k 要素（左カラム内） */
+/* display: inline-block を指定することで、margin が有効になります */
+.book_inner_left k {
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.book_inner_left p {
+  margin-top: 10px;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* 著者情報（繰り返しフィールド全体） */
+.book_inner_left_author {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+}
+
+/* 著者情報（繰り返しフィールド全体） */
+.book_inner_left_authors {
+  display: flex;
+  flex-wrap: wrap;          /* 折り返しを有効にする */
+  gap: 8px 10px;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+  margin-top: 3px;
+}
+
+/* 著者フィールドの各要素（aboutauthor / separator）を横並びに */
+.authorRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* aboutauthor と separator の隙間 */
+  min-width: 0;
+}
+.authorRow p {
+  margin: 0;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+/* 掲載誌 */
+.book_inner_left_publisher {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+}
+
+/* 下部エリア（出版社・出版日のブロック） */
+.book_inner_left_bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 掲載年月 */
+.book_inner_left_publication {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+}
+
+/* 下部ボタン */
+.book_inner_left_buttom {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  margin-left: 20px;
+  height: 18px;
+  padding: 20px 24px 15px 20px;
+  text-decoration: none;
+  color: #e5e5e5;
+  border: solid 1.5px #e5e5e5;
+}
+.book_inner_left_buttom p {
+  width: 50%;
+  white-space: nowrap;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+/* k 要素（下部ボタン内） */
+.book_inner_left_buttom k {
+  display: inline-block;
+  width: 50%;
+  white-space: nowrap;
+  font-size: 16px;
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* 右カラム */
+.book_inner_right {
+  width: 55%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 15px;
+  margin-left: 117px;
+}
+
+.book_inner_right_bookimage {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.book_inner_right_bookimage img {
+  width: 50%;
+  height: auto;
+  text-align: right;
+}
+
+
+/* === メディアクエリ：540px以下の場合 === */
+@media (max-width: 540px) {
+  /* 1. 内側コンテナ (.book_inner) を縦並びにし、左右の padding を 6.6% に */
+  .book_inner {
+    flex-direction: column;
+    padding: 25px 6.6% 45px 6.6%;
+  }
+
+  /* 2. 左カラム (.book_inner_left) の幅を 100% に変更、gap を 17px に調整 */
+  .book_inner_left {
+    width: 100%;
+    gap: 17px;
+  }
+  .book_inner_left_title {
+    padding-bottom: 0;
+  }
+  .book_inner_left p {
+    margin-top: 5px;
+  }
+
+  .book_inner_left_authors {
+    gap: 4px 10px;
+  }
+
+  /* 3. 右カラム (.book_inner_right) の幅を 100%、padding と margin を 0 にし、内部を中央寄せ */
+  .book_inner_right {
+    width: 100%;
+    padding: 0;
+    margin-left: 0;
+    justify-content: center;
+  }
+  .book_inner_right_bookimage {
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  /* 4. 右カラム内の画像 (.book_inner_right_bookimage img) の幅を 80%、margin-top を 30px に変更 */
+  .book_inner_right_bookimage img {
+    width: 80%;
+  }
+
+  /* 5. 下部ボタン (.book_inner_left_buttom) の gap を 5px、padding を 20px 6px 15px 10px に変更 */
+  .book_inner_left_buttom {
+    gap: 5px;
+    padding: 20px 6px 15px 10px;
+  }
+}

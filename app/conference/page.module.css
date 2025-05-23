@@ -1,0 +1,146 @@
+/* page.module.css */
+
+.conference {
+    width: 100%;
+    height: auto;
+  }
+  .conference_bottomline{
+    width: 89.3%;
+    border-bottom: 0.3px solid #d9d9d9;
+    margin: 0 auto;         /* コンテナ自体を中央配置 */
+    display: flex;
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center;     
+  }
+  
+  /* 内側コンテナ */
+  .conference_inner {
+    width: auto;
+    padding: 86px 8.5% 96px 8.5%;
+    display: flex;
+  }
+  
+  /* 左カラム */
+  .conference_inner_left {
+    width: 45%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+  }
+  
+  /* タイトル */
+  .conference_inner_left_title {
+    width: auto;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 4.14px;
+    margin-top: 0;
+  }
+   /* 著者情報（繰り返しフィールド全体） */
+   .conference_inner_left_authors {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+    display: flex;
+    gap: 8px; 
+    white-space:nowrap;
+  }
+  .conference_inner_left k{
+    font-size: 12px;
+  }
+  
+  /* 著者フィールドの各要素（aboutauthor / separator）を横並びに */
+  .authorRow {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* aboutauthor と separator の隙間 */
+  }
+  .authorRow p{
+    margin-bottom: 0;
+  }
+
+  
+  /* 右カラム */
+  .conference_inner_right {
+    width: 55%;
+    display: flex;
+    flex-flow: column;
+    gap: 30px;
+    margin-left: 117px;
+  }
+  .conference_inner_right k{
+    font-size: 12px;
+  }
+  .conference_inner_right p{
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+
+  /* 掲載誌 */
+  .conference_inner_right_societyname {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+  
+  /* 掲載年月 */
+  .conference_inner_right_proceedingsname {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+
+  .conference_inner_right_announcementdate {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+
+
+  @media (max-width: 540px) {
+    /* 1. 内側コンテナ (.conference_inner) を縦並びにし、padding を 25px 6.6% 45px 6.6% に変更 */
+    .conference_inner {
+      flex-direction: column;
+      padding: 25px 6.6% 45px 6.6%;
+      gap: 12px;
+    }
+    
+    /* 2. 左カラム (.conference_inner_left) の幅を 100% に変更 */
+    .conference_inner_left {
+      width: 100%;
+    }
+    
+    /* 3. 左カラム内のタイトル (.conference_inner_left_title) に margin-bottom を 19px に設定 */
+    .conference_inner_left_title {
+      margin-bottom: 19px;
+    }
+    
+    /* 4. 著者フィールドの各要素が入る行 (.authorRow) の gap を 5px に変更 */
+    .authorRow {
+      gap: 5px;
+    }
+    
+    /* 5. .authorRow 内の p 要素の margin-top を 5px に設定 */
+    .authorRow p {
+      margin-top: 5px;
+    }
+    
+    /* 6. 右カラム (.conference_inner_right) の幅を 100%、margin-left を 0、gap を 12px に変更 */
+    .conference_inner_right {
+      width: 100%;
+      margin-left: 0;
+      gap: 12px;
+    }
+    
+    /* 7. 右カラム (.conference_inner_right) 内の p 要素の margin-top を 5px に設定 */
+    .conference_inner_right p {
+      margin-top: 5px;
+    }
+  }
+  

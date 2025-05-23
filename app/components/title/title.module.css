@@ -1,0 +1,90 @@
+.titleinner {
+  width: 100%;
+  height: 146px;
+  display: flex;
+  font-size: 20px;
+  font-weight: 200;
+  align-items: center;
+  position: relative; /* 子要素の配置基準 */
+  border-bottom: 0.3px solid #d9d9d9;
+}
+
+.titleinner_back {
+  margin-left: 8.5%;
+  text-align: center;
+}
+
+/* 戻るリンクコンテナを flex で横並びに */
+.backLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none !important;
+}
+
+/* 戻る画像 */
+.backImg {
+  width: 40px;
+  height: auto;
+  transform: rotate(180deg);
+  display: block;
+}
+
+/* 戻るテキスト：改行なし、下線なし */
+.backText {
+  font-size: 20px;
+  color: #e5e5e5;
+  margin-left: 10px;
+  white-space: nowrap;
+  text-decoration: none !important;
+  transition: color 0s;
+}
+
+/* ホバー時にテキスト色変更 */
+.backLink:hover .backText {
+  color: #000;
+}
+
+.titleinner_title {
+  font-weight: 400;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 540px) {
+  /* 1. titleinner_back と backLink の margin-left を 6.6% に変更 */
+  .titleinner_back {
+    margin-left: 6.6%;
+  }
+  .backLink {
+    margin-left: 6.6%;
+  }
+  
+  /* 2. backText を非表示にする */
+  .backText {
+    display: none;
+  }
+  .backImg {
+    width: 32px;
+  }
+  
+  /* 3. titleinner_title を絶対配置から解除し、フォントサイズ17px、左寄せ、改行なし、画像の右横に配置 */
+  .titleinner_title {
+    position: static;           /* absolute を解除 */
+    margin-left: 20px;          /* 画像との隙間 */
+    font-size: 15px;
+    transform: none;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  /* 4. タイトル全体のコンテナ .titleinner を横並びにして、子要素を左寄せに */
+  .titleinner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 130px;
+  }
+}
+
+

@@ -1,0 +1,17 @@
+.canvasContainer {
+    position: relative; /* 絶対配置の基準 */
+    width: 100%; 
+    height: auto; 
+    overflow: visible;
+  }
+  
+  .canvas {
+    display: block; 
+    /* Canvas はデフォルト inline なので、block にしておくとレイアウトが整いやすい */
+  }
+  
+  @media (max-width: 540px) {
+    .canvasContainer {
+      height: 380px;   /* ← 固定高さ */
+    }    
+  }

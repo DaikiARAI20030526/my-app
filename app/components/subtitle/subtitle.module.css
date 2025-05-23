@@ -1,0 +1,25 @@
+.subtitle {
+    width: 100%;
+  }
+
+
+.subtitleinner {
+    height: 165px;
+    display: flex;
+  font-size: 24px;
+  letter-spacing: 2px;
+  /* justify-content: center;  */
+  align-items: center;
+  font-weight: 400;
+  padding-top: 20px;
+  margin-left: 8.5%;
+  }
+
+  @media (max-width: 540px) {
+    .subtitleinner {
+      height: 125px;
+      font-size: 21px;
+      margin-left: 6.6%;
+    }
+  }
+  

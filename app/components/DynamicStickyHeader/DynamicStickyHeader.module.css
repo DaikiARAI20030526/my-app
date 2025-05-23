@@ -1,0 +1,16 @@
+.headerWrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.15s ease;
+  }
+  
+  .slideDown {
+    transform: translateY(0);
+  }
+  
+  .slideUp {
+    transform: translateY(-100%);
+  }
+  

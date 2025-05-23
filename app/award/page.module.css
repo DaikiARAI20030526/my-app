@@ -1,0 +1,159 @@
+.award {
+    width: 100%;
+    height: auto;
+  }
+  .award_bottomline{
+    width: 89.4%;
+    border-bottom: 0.3px solid #d9d9d9;
+    margin: 0 auto;         /* コンテナ自体を中央配置 */
+    display: flex;
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center;     
+  }
+  
+  /* 内側コンテナ */
+  .award_inner {
+    width: auto;
+    padding: 86px 8.5% 96px 8.5%;
+    display: flex;
+  }
+  
+  /* 左カラム */
+  .award_inner_left {
+    width: 45%;
+    display: flex;
+    flex-flow: column;
+    justify-content:space-between;
+  }
+  
+  .award_inner_left_awardname {
+    width: auto;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 4.14px;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+
+  /* タイトル */
+  .award_inner_left_title {
+    width: auto;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 4.14px;
+    margin-top: 0;
+  }
+  .award_inner_left_awardcategory p {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .award_inner_left_awardcategory k {
+    font-size: 12px;
+  }
+
+  .award_inner_right {
+    width: 55%;
+    display: flex;
+    flex-flow: column;
+    gap: 30px;
+    margin-left: 117px;
+  }
+  .award_inner_right k{
+    font-size: 12px;
+  }
+  .award_inner_right p{
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .award_inner_right_author {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+  
+
+  /* 著者情報（繰り返しフィールド全体） */
+  .award_inner_right_authors {
+    display: flex;
+    flex-wrap: wrap;          /* ← 折り返しを有効にする */
+    gap: 8px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+    margin-top: 12px;
+  }
+  
+  /* 著者フィールドの各要素（aboutauthor / separator）を横並びに */
+  .authorRow {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* aboutauthor と separator の隙間 */
+    min-width: 0;
+  }
+  .authorRow p {
+    margin: 0;
+    white-space: normal;         /* 連続スペースの縮約を有効にし、必要に応じて改行 */
+    word-break: break-word;      /* 単語途中でも折り返しを許可 */
+    overflow-wrap: break-word;   /* こちらも同様 */
+    min-width: 0;                /* Flexbox内でテキストがはみ出さないように */
+  }
+
+  .award_inner_right_publisher {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+  
+  .award_inner_right_publisher {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+
+  @media (max-width: 540px) {
+    /* 1. 内側コンテナ (.award_inner) を縦並びにし、左右の padding を6.6%に、上下の padding を25px / 45pxに変更 */
+    .award_inner {
+      flex-direction: column;
+      padding: 25px 6.6% 45px 6.6%;
+    }
+  
+    /* 2. 左カラム (.award_inner_left) の幅を100%に */
+    .award_inner_left {
+      width: 100%;
+    }
+  
+    /* 3. 右カラム (.award_inner_right) の幅を100%、margin-leftを0、gapを12pxに変更 */
+    .award_inner_right {
+      width: 100%;
+      margin-left: 0;
+      gap: 17px;
+    }
+  
+    /* 4. 著者情報全体 (.award_inner_right_authors) の gap を10pxに */
+    .award_inner_right_authors {
+      margin-top: 0;
+      gap: 4px 10px;
+    }
+  
+    /* 5. award_inner_left_awardcategory の下側に margin-bottom: 12px を追加 */
+    .award_inner_left_awardcategory {
+      margin-bottom: 17px;
+    }
+
+    .award_inner_left_awardcategory p {
+      margin-top: 5px;
+    }
+
+    .award_inner_right p{
+      margin-top: 5px;
+    }
+  }
+  

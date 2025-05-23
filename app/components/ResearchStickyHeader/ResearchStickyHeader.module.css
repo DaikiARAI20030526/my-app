@@ -1,0 +1,18 @@
+.headerWrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.15s ease;
+  }
+  
+  /* 表示状態 */
+  .slideDown {
+    transform: translateY(0);
+  }
+  
+  /* 非表示状態 */
+  .slideUp {
+    transform: translateY(-100%);
+  }
+  

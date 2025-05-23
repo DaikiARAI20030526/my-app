@@ -1,0 +1,31 @@
+/* TopPageContent.module.css */
+
+/* コンテナ全体。幅いっぱいで表示し、高さは Canvas の大きさや子要素に応じて変わる */
+.topPageContent {
+  position: relative;
+  width: 100%;
+  /* 必要に応じて最小高さを設定 (例: 600px) */
+  /* min-height: 600px; */
+  overflow: visible; /* Canvas をはみ出させない */
+}
+
+/* CanvasArt と ArtName を分けて配置するためのラッパー */
+.canvasArtWrapper {
+  position: relative; 
+  width: 100%;
+  /* 高さは子要素（Canvas）に依存するので固定しない */
+}
+
+.artNameWrapper {
+  position: relative;
+  width: 100%;
+  /* z-index を小さくし Canvas の下/上 どちらに置きたいか調整可 */
+  z-index: 1;
+}
+
+/* 540px以下の画面サイズの場合 */
+@media (max-width: 540px) {
+.topPageContent {
+  margin-top: 1px;
+}
+}

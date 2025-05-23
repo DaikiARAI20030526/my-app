@@ -1,0 +1,39 @@
+.main {
+    margin-top: 0;
+  }
+  
+  .top_title {
+    width: 100%;
+    z-index: 100;
+  }
+  
+
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: auto; /* 自動で高さを確保 */
+  }
+  
+  .canvasWrapper {
+    position: relative;
+    width: 100%;
+   
+  }
+  
+  /* CanvasArt 内の canvas を最前面に表示 */
+  .canvasWrapper canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10; /* 必要に応じて数値は調整 */
+    pointer-events: auto;
+  }
+  
+  .anchorSection {
+    scroll-margin-top: 75px;
+  }
+  
+  .navigation_explanation {
+    font-size: 17px;
+    white-space: pre-line; /* \n を改行として解釈 */
+  }

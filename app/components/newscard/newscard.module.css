@@ -1,0 +1,100 @@
+.newscard {
+  text-decoration: none;
+  color: #000;
+}
+
+.newscard_inner {
+  width: 83%;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* date と title を横並びにし、上段（first line）を左寄せに */
+.newscard_inner_left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;  /* 上段揃え */
+  gap: 15px;              /* date と title の間の隙間15px */
+}
+
+.newscard_inner_left_date {
+  color: #e5e5e5;
+  font-weight: 400;
+  margin: 0;
+  white-space: nowrap;    /* 改行しない */
+}
+
+/* タイトル側のスタイル */
+.newscard_inner_left_title {
+  font-size: 17px;
+  font-weight: 400;
+  /* 左padding: 24px、右padding: 60px */
+  padding: 0 60px 0 24px;
+  color: #000;
+  position: relative;     /* 疑似要素の配置用 */
+  text-align: left;
+}
+
+/* 通常状態では何も表示せず、ホバー時にのみ "●" を表示する */
+.newscard_inner_left_title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-right: 5px;
+}
+
+.newscard:hover .newscard_inner_left_title::before {
+  content: "●";
+}
+
+/* 下線 */
+._line {
+  width: 83%;
+  margin: 0 auto;
+  border-bottom: 0.3px solid #e5e5e5;
+}
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 810px) {
+  .newscard_inner {
+    padding: 30px 7.2% 30px 5.15%;
+  }
+}
+
+@media (max-width: 540px) {
+  .newscard_inner {
+    width: 87%;
+    padding: 15px 4.2% 15px 5.15%;
+  }
+  /* innerleft を column にし、gap を 7px に変更 */
+  .newscard_inner_left {
+    flex-direction: column;
+    gap: 7px;
+  }
+  /* lefttitle の padding を削除、フォントサイズを 16px、幅を 111% に設定 */
+  .newscard_inner_left_title {
+    padding: 0;
+    font-size: 16px;
+    width: 111%;
+  }
+  /* タイトル側の疑似要素は常に空にして非表示 */
+  .newscard_inner_left_title::before,
+  .newscard:hover .newscard_inner_left_title::before {
+    /* ※ この記述はモバイル時の仕様で、タイトルの「●」は右側の疑似要素に移動する設定の場合 */
+    /* ここでは、通常は左側の疑似要素を非表示にし、ホバー時でも非表示のままとする */
+    content: "";
+  }
+  /* 日付側の疑似要素を利用して、文末にホバー時 "●" を表示 */
+  .newscard_inner_left_date::after {
+    content: "";
+    display: inline-block;
+  }
+  .newscard:hover .newscard_inner_left_date::after {
+    content: "●";
+    margin-left: 5px;
+    color: #000;
+  }
+}

@@ -1,0 +1,55 @@
+.artNameContainer {
+    width: 100%;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    border-bottom: solid 0.3px #e5e5e5;
+  }
+  
+  .titleText {
+    font-size: 11.5px;
+    margin: 0;
+  }
+  
+  .subtitleText {
+    font-size: 11px;
+    color: #e5e5e5;
+    margin: 0;
+    padding-top: 2px;
+  }
+  .artNameContainer {
+    width: 100%;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    border-bottom: solid 0.3px #e5e5e5;
+}
+
+.titleText {
+    font-size: 11.5px;
+    margin: 0;
+}
+
+.subtitleText {
+    font-size: 11px;
+    color: #e5e5e5;
+    margin: 0;
+    padding-top: 2px;
+}
+
+@media (max-width: 540px) {
+  .artNameContainer {
+    height: 80px;
+    margin-top: -5px;
+  }
+  .titleText {
+    font-size: 18.5px;
+  }
+  .subtitleText {
+    font-size: 18px;
+  }
+}

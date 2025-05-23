@@ -1,0 +1,132 @@
+.navigation {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navigation_inner {
+  width: 83%;
+  margin: 0 auto;
+  font-weight: 400;
+  height: auto;
+  font-size: 20px;
+  transition: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navigation_text_container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.navigation_copy_div {
+  display: flex;
+  justify-content: center;
+}
+
+.navigation_copy {
+  font-size: 17px;
+  color: #e5e5e5;
+  margin-top: 40px;
+  white-space: nowrap;
+}
+
+.navigation_main_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 65px; /* 下部余白65px */
+}
+
+/* naviname と naviexplanation をまとめた div */
+.navigation_text_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;         /* 要素間のgap 20px */
+  padding-top: 30px;  /* 上部に30pxの余白 */
+}
+
+.navigation_name {
+  font-size: 24px;
+  white-space: nowrap;
+  color: #000;
+}
+
+.navigation_explanation {
+  font-size: 14px;
+  white-space: pre-line;
+}
+
+.navigation_image_div {
+  /* 必要に応じたスタイルを追加 */
+}
+
+.navigation_img {
+  width: 400px;       /* 幅300px */
+  height: 300px;
+  /* aspect-ratio: 1 / 1; */
+  object-fit: contain;
+  padding-right: 10px; /* 右側に10pxのパディング */
+}
+
+._line {
+  width: 83%;
+  border-bottom: solid 0.3px #e5e5e5;
+  margin: 0 auto;
+}
+
+@media (max-width: 540px) {
+/* 1. copy の font を 12px に、margin-top を 20px に設定。
+   また、コピー部分を含むコンテナの justify-content は初期状態（flex-start）に */
+.navigation_copy {
+  font-size: 15px;
+  margin-top: 25px;
+}
+.navigation_copy_div {
+  justify-content: flex-start;
+}
+
+/* 2. name の font を 15px に */
+.navigation_name {
+  font-size: 19px;
+}
+.navigation_text_info {
+  padding-top: 12px;  /* 上部に30pxの余白 */
+  gap: 6px;         /* 要素間のgap 20px */
+}
+
+/* 3. explanation の font を 11px に */
+.navigation_explanation {
+  width: 108%;
+  font-size: 13px;
+}
+
+/* 4. inner の width を 85% に */
+.navigation_inner {
+  width: 85%;
+}
+.navigation_image_div {
+  display: contents;
+}
+/* 5. img の width を 120px に */
+.navigation_img {
+  width: 300px;
+  height: 180px;
+  padding-right: 0;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 6. navi-main (navigation_main_div) の margin-bottom を 35px に */
+/* 7. navigation_main_div の内包要素を縦並びに変更（flex-direction: column） */
+.navigation_main_div {
+  margin-bottom: 30px;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+}

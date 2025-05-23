@@ -1,0 +1,149 @@
+.lecture {
+    width: 100%;
+    height: auto;
+  }
+  .lecture_bottomline{
+    width: 89.4%;
+    border-bottom: 0.3px solid #d9d9d9;
+    margin: 0 auto;         /* コンテナ自体を中央配置 */
+    display: flex;
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center;     
+  }
+  
+  /* 内側コンテナ */
+  .lecture_inner {
+    width: auto;
+    padding: 86px 8.5% 96px 8.5%;
+    display: flex;
+  }
+
+  /* 左カラム */
+  .lecture_inner_left {
+    width: 45%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+  }
+
+  .lecture_inner_left_name {
+    width: auto;
+  }
+  
+  /* タイトル */
+  .lecture_inner_left_title {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 4.14px;
+  }
+  
+  .lecture_inner_left_locationname {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+
+    letter-spacing: 1.8px;
+    margin-top: 30px;
+  }
+    .lecture_inner_left_locationname p{
+      margin: 0;
+      padding-top: 11px;
+    }
+    .lecture_inner_left_locationname k{
+        font-size: 12px;
+      }
+
+  /* 右カラム */
+  .lecture_inner_right {
+    width: 55%;
+    display: flex;
+    flex-flow: column;
+    gap: 30px;
+    margin-left: 117px;
+  }
+  .lecture_inner_right k{
+    font-size: 12px;
+  }
+  .lecture_inner_right p{
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .lecture_inner_right_author {
+    /* gap: 8px; */
+    margin-top: -3px;
+  }
+
+  /* 著者情報（繰り返しフィールド全体） */
+  .lecture_inner_right_authors {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+    display: flex;
+    gap: 8px; 
+    white-space:nowrap;
+  }
+  
+  /* 著者フィールドの各要素（aboutauthor / separator）を横並びに */
+  .authorRow {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* aboutauthor と separator の隙間 */
+  }
+
+  /* 掲載誌 */
+  .lecture_inner_right_implementationdate {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+  
+  /* 掲載誌 */
+  .lecture_inner_right_conferencetype {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+
+  @media (max-width: 540px) {
+    /* 1. 内側コンテナ (.lecture_inner) を縦並びにし、padding を 25px 6.6% 45px 6.6% に変更 */
+    .lecture_inner {
+      flex-direction: column;
+      padding: 25px 6.6% 45px 6.6%;
+    }
+  
+    /* 2. 左カラム (.lecture_inner_left) の幅を 100% に変更 */
+    .lecture_inner_left {
+      width: 100%;
+    }
+  
+    /* 3. lecture_inner_left_locationname の margin-top を 24px に変更 */
+    .lecture_inner_left_locationname {
+      margin-top: 24px;
+    }
+  
+    /* 4. lecture_inner_left_locationname 内の p の padding-top を 5px、padding-bottom を 12px に変更 */
+    .lecture_inner_left_locationname p {
+      padding-top: 5px;
+      padding-bottom: 15px;
+    }
+  
+    /* 5. 右カラム (.lecture_inner_right) の幅を 100%、margin-left を 0 に、gap を 12px に変更 */
+    .lecture_inner_right {
+      width: 100%;
+      margin-left: 0;
+      gap: 12px;
+    }
+  
+    /* 6. 右カラム内の p 要素の margin-top を 5px に変更 */
+    .lecture_inner_right p {
+      margin-top: 5px;
+    }
+
+  }
+  

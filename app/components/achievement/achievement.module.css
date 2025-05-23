@@ -1,0 +1,110 @@
+.achievement {
+    position: relative;         /* 左要素を absolute で配置するため */
+    /* border-bottom: 0.3px solid #d9d9d9; */
+    height: 80px;               /* 高さを確保（お好みで調整） */
+  }
+  
+  /* 左側：アクティブなテキスト */
+  .achievement_left {
+    position: absolute;
+    left: 8.6%;                 /* お好みで調整 */
+    top: 50%;
+    transform: translateY(-50%); /* 縦中央揃え */
+  }
+  
+  .achievement_left p {
+    margin: 0;
+    color: #E85298;
+    border: 1px solid #E85298;
+    font-size: 17px;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 2px 8px;
+  }
+  
+  /* 右側：非アクティブリンクを中央に並べる */
+  .achievement_right {
+    position: absolute;
+    left: 50.5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    /* gap: 52px; */
+    align-items: center;
+  }
+  
+  /* 右側のリンク装飾 */
+  .achievement_right a {
+    text-decoration: none;
+    display: flex;
+  }
+  
+  /* 右側のリンク内テキスト */
+  .achievement_right p {
+    margin: 0;
+    color: #e5e5e5;
+    font-size: 19px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  
+  /* 右側リンクのうち、最後以外の要素の右側に「ー」を表示 */
+  .achievement_right a:not(:last-child)::after {
+    content: "ー";
+    margin: 1.5px 22.5px 0 22.5px;       /* テキストと「ー」の間隔調整 */
+    color: #e5e5e5 !important;
+    pointer-events: none;   /* カーソルやクリック判定を無効化 */
+    display: inline-block;  /* インライン要素として扱い、テキストと同じ行に配置 */
+    vertical-align: middle; /* テキストの縦位置に合わせる */
+  }
+  
+  /* ホバー時の色調整 */
+  .achievement_right p:hover {
+    color: #000;
+  }
+  
+  @media (max-width: 540px) {
+    /* achievement 全体を絶対配置から解除し、縦並びに */
+    .achievement {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+    }
+    
+    /* 左側（アクティブテキスト）を通常の流れにして、左余白を6.6%に */
+    .achievement_left {
+      position: static;
+      left: auto;
+      transform: none;
+      margin: 30px 0 18px 6.6%;
+    }
+    
+      /* 右側（非アクティブリンク）の設定を調整 */
+  .achievement_right {
+    width: 93.4%;
+    position: static;
+    left: auto;
+    transform: none;
+    /* 両側のマージンを6.6%に設定 */
+    margin-left: 6.6%;
+    display: flex;
+    align-items: center;
+    /* gap: 12px; */
+  }
+  
+  .achievement_right p {
+    font-size: 18px; /* 1. フォントサイズを18pxに */
+  }
+
+  /* 2. 「ー」疑似要素の左右パディングをvwで設定（例: 2vw） */
+  .achievement_right a:not(:last-child)::after {
+    content: "ー";
+    margin: 0 2.8vw; /* 画面幅に応じて変化する余白 */
+    color: #e5e5e5 !important;
+    pointer-events: none;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,57 @@
+.anchorSection {
+    scroll-margin-top: 75px;
+  }  
+
+.line{
+    padding-top: 45px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    border-bottom: 0.3px solid #e5e5e5;
+}
+.line2{
+  padding-top: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-bottom: 0.3px solid #e5e5e5;
+}
+
+.text1 {
+  /* 横幅指定はしない (auto) */
+  margin: 0 1% 0 8.5%; /* 上下マージンは必要に応じて設定 */
+  text-align: left;    /* テキストを左揃えに */
+  font-size: 16px;
+  font-weight: 400;
+  white-space: normal; 
+  word-break: break-word; 
+  letter-spacing: 4px;
+  line-height: 34px;
+}
+
+
+
+.text2{
+    margin: 0 1% 0 8.5%;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: normal; 
+    word-break: break-word; 
+    letter-spacing: 4px;
+    line-height: 34px;
+  }
+
+  @media (max-width: 540px) {
+    .text1,
+    .text2 {
+      font-size: 14px;
+      padding-left: 7.9%;
+      margin: 0 auto;
+      text-align: justify;
+      text-justify: inter-word;
+      line-height: 30px;
+    }
+  }
+  
+  
+  

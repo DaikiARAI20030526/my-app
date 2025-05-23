@@ -1,0 +1,26 @@
+/* Introduction.module.css */
+  .group {
+    margin-bottom: 20px; /* 各グループ間の余白 */
+  }
+  
+  .groupText {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: pre-line; 
+    word-break: break-word; 
+    letter-spacing: 4px;
+    line-height: 34px;
+  }
+
+  @media (max-width: 540px) {
+    .groupText {
+      font-size: 14px;
+
+      margin: 0 auto;
+      text-align: justify;
+      text-justify: inter-word;
+      line-height: 30px;
+    }
+  }
+  

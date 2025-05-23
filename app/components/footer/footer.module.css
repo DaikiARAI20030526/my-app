@@ -1,0 +1,192 @@
+/* フッター全体 */
+.footer {
+  width: 100%;
+}
+
+/* フッター内のコンテナ：padding-bottomを45pxに、gapを25pxに設定 */
+.footerInner {
+  padding: 60px 8.5% 45px 8.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+/* 左側エリア：縦並び、gapを25pxに設定 */
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* 各ブロック（内部は横並び） */
+.footerBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ブロック内のリンク（タイトル・テキスト） */
+.footerBlock a {
+  display: inline-block;
+  text-decoration: none;
+  color: #e5e5e5;
+}
+
+/* タイトル：18px */
+.footerBlock .title {
+  font-size: 18px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* テキスト：18px */
+.footerBlock .text {
+  font-size: 18px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* footerLeft内のリンクはホバー時に色変更 */
+.footerLeft .footerBlock a:hover {
+  color: #000;
+}
+
+/* ブロック内のリンク間に自動で「ー」を挿入（最後のリンクは除く） */
+.footerBlock a:not(:last-child)::after {
+  content: "ー";
+  margin: 0 10px;
+  color: #e5e5e5;
+}
+
+/* 右側エリア：テキストと画像を左右端に配置 */
+.footerRight {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 14px;
+}
+
+/* 右側のテキストをひとまとめに */
+.footerRightText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 右側テキスト：16px */
+.footerRight .text {
+  font-size: 16px;
+  margin: 0;
+  color: #e5e5e5;
+}
+
+/* 画像コンテナ：画像を下揃えに */
+.imageContainer {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 19px;
+  margin-left: 20px;
+}
+
+/* アイコン画像 */
+.iconImage {
+  width: 60px;
+  height: auto;
+}
+
+/* 下側エリア：コピーライト */
+.footerinner_under {
+  width: 100%;
+}
+
+/* コピーライト：左右paddingを8.5%、padding-bottom 10px、テキストをcenter配置 */
+.copyRight {
+  font-size: 11px;
+  margin: 0;
+  padding: 0 8.5% 10px 8.5%;
+  text-align: center;
+}
+
+
+/* ブレイクポイント：850px以下 */
+@media (max-width: 1150px) {
+  .footerInner {
+    flex-direction: column;
+    padding: 50px 40px;
+    gap: 24px;
+  }
+  .footerLeft {
+    margin-bottom: 40px;
+    gap: 24px;
+  }
+  .citizenscienceBlock a {
+    font-size: 24px !important;
+  }
+  
+  /* 自動挿入記号のマージンを 0 6px に変更（全体共通） */
+  .footerBlock a:not(:last-child)::after {
+    margin: 0 6px !important;
+  }
+  /* citizenscienceBlock 内では自動挿入記号を削除 */
+  .citizenscienceBlock a:not(:last-child)::after {
+    content: "" !important;
+  }
+  
+  /* footerInner の padding を 50px 6% に変更 */
+  .footerInner {
+    padding: 50px 8.5%;
+  }
+  
+  /* citizenscienceBlock を縦並びに設定し、gap を 30px に */
+  .citizenscienceBlock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 21.5px;
+  }
+  
+  /* footerLeft の gap を 17px に変更 */
+  .footerLeft {
+    gap: 21px;
+  }
+}
+
+/* メディアクエリ：540px以下 */
+@media (max-width: 540px) {
+  /* 全体：footerBlock内リンクのフォントサイズを 12px に */
+  .footerBlock a {
+    font-size: 13px !important;
+  }
+  /* ただし、citizenscienceBlock内のリンクは 18px に上書き */
+  .citizenscienceBlock a {
+    font-size: 18px !important;
+  }
+  
+  /* 自動挿入記号のマージンを 0 6px に変更（全体共通） */
+  .footerBlock a:not(:last-child)::after {
+    margin: 0 6px !important;
+  }
+  /* citizenscienceBlock 内では自動挿入記号を削除 */
+  .citizenscienceBlock a:not(:last-child)::after {
+    content: "" !important;
+  }
+  
+  /* footerInner の padding を 50px 6% に変更 */
+  .footerInner {
+    padding: 50px 6%;
+  }
+  
+  /* citizenscienceBlock を縦並びに設定し、gap を 30px に */
+  .citizenscienceBlock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 21.5px;
+  }
+  
+  /* footerLeft の gap を 17px に変更 */
+  .footerLeft {
+    gap: 21px;
+  }
+}

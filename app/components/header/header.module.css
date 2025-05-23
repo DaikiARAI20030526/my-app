@@ -1,0 +1,134 @@
+.header {
+    height: 120px; /* ヘッダーの高さを120pxに設定 */
+    background-color: #ffffff;
+    border-bottom: 0.3px solid #d9d9d9;
+    position: relative;
+    /* 右側のパディングを3.85%、左側は2.4% */
+    padding: 0 3.85% 0 2.4%;
+  }
+  
+  .topTitleInner {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .logoAndArrow {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logoInner {
+    /* ロゴエリア */
+  }
+  
+  .logoImg {
+    width: 70px; /* ロゴ画像の幅を70pxに設定 */
+    height: auto;
+    padding-top: 5px;
+  }
+  
+  /* arrowContainer 削除（arrowImg も含む） */
+  
+  .headerTitle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  
+  .headerTitle p {
+    margin: 0;
+    /* padding-right を削除、代わりに左側に15px */
+    padding-left: 15px;
+    font-size: 12px;
+    color: #000;
+    transition: color 0s;
+  }
+  
+  .rightSide {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* gap を49pxに設定 */
+    /* padding-top 削除 */
+  }
+  
+  .languageSwitch {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .languageSwitch a {
+    text-decoration: none !important;
+  }
+  
+  .langText {
+    font-size: 12px;
+    margin: 0;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  
+  .langSlash {
+    font-size: 12px;
+    font-weight: 300;
+    color: #000;
+  }
+  
+  .menuContainer {
+    /* 必要に応じたスタイルを追加 */
+  }
+  
+  .menuText {
+    font-size: 19.5px;
+    font-weight: 400;
+    cursor: pointer;
+    margin: 0;
+    color: rgb(229, 229, 229);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  
+  .menuText:hover {
+    transition: none;
+    color: #000;
+  }
+  @media (max-width: 540px) {
+    /* 1. ヘッダーの高さを80pxに変更 */
+    .header {
+      height: 80px;
+    }
+    /* 2. ロゴ画像の幅を40pxに変更 */
+    .logoImg {
+      width: 40px;
+    }
+    /* 3. headerTitle内のpのpadding-leftを削除 */
+    @media (max-width: 540px) {
+  .headerTitle {
+    left: 0;
+    transform: none;
+    margin-left: 45px;
+    text-align: left;
+    max-width: 60%;
+    white-space: normal;       /* 改行を許可 */
+    word-wrap: break-word;     /* 長い単語の場合に折り返す */
+  }
+}
+
+    .headerTitle p {
+      padding-left: 9px;
+      font-size: 11px;
+    }
+    /* 5. 右側のランゲージ部分（languageSwitch）を非表示に */
+    .languageSwitch {
+      display: none;
+    }
+
+    .menuText {
+      font-size: 16px;
+    }
+  }
+  

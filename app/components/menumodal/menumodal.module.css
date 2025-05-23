@@ -1,0 +1,286 @@
+/* ----- 基本設定 ----- */
+.modalContainer {
+    position: fixed;
+    box-sizing: border-box;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    padding-left: 33%;
+    z-index: 9999;
+    overflow-y: auto;
+    border-left: solid 0.3px #e5e5e5;
+    white-space: nowrap;
+}
+.modalContainer * {
+    white-space: nowrap;
+}
+
+/* ----- modalInner（variant "a"） ----- */
+.modalInner {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: column;
+    height: calc(100vh - 57px);
+    padding: 57px 7.3% 0 1.43%;
+    margin-left: 1.43%;
+    gap: 20px;
+    background: #fffefe;
+    border-left: solid 0.3px #e5e5e5;
+}
+
+/* ----- modalInnerVariantB（variant "b"） ----- */
+.modalInnerVariantB {
+    display: flex;
+    flex-direction: column;
+    padding: 47px 7.3% 0 1.43%;
+    height: calc(100vh - 47px);
+    margin-left: 1.43%;
+    gap: 20px;
+    background: #fffefe;
+    border-left: solid 0.3px #e5e5e5;
+}
+
+/* modalMenu */
+.modalMenu {
+    flex: 1;
+    border-bottom: solid 0.3px #e5e5e5;
+    padding-bottom: 30px;
+}
+
+/* modalCanvas */
+.modalCanvas {
+    flex: 1;
+    width: 100%;
+    background: #fffefe;
+}
+
+/* ----- メニュー内の各要素（基本スタイル） ----- */
+.menuLeft {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    justify-content: flex-end;
+}
+
+/* 左カラム */
+.leftColum2 {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 6px;
+}
+.menuLinkLeft {
+    font-size: 20px;
+    text-decoration: none;
+    color: #000;
+    position: relative;
+}
+.menuLinkLeft::before {
+    content: "● ";
+    display: inline-block;
+    width: 1.5em;
+    color: transparent;
+}
+.menuLinkLeft:hover::before,
+.menuLinkLeft.active::before {
+    color: #000;
+}
+
+/* 右カラム */
+.menuRight {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.rightColum1 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 6px;
+}
+.rightGroupC,
+.rightGroupA,
+.rightGroupB {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.rightGroupC {
+    margin-top: 0;
+    order: -1;
+}
+.rightGroupA,
+.rightGroupB {
+    margin-top: 20px;
+}
+.rightColum1 a {
+    text-decoration: none;
+}
+/* -------------------------------------------------------------------
+   ここから .menuTextLeft の挙動をカスタマイズ
+   - グループA/C: ホバー時のみ ● を表示（アクティブ時は非表示）
+   - グループB: ホバー時＆アクティブ時 ● を表示（従来どおり）
+------------------------------------------------------------------- */
+.menuTextLeft {
+    font-size: 12px;
+    margin: 0;
+    color: #000;
+    position: relative;
+}
+.menuTextLeft::before {
+    content: "● ";
+    display: inline-block;
+    width: 1.5em;
+    color: transparent;
+}
+/* ホバー時は全グループで ● を表示 */
+.menuTextLeft:hover::before {
+    color: #000;
+}
+/* グループB のみアクティブ時にも ● を表示 */
+.rightGroupB .menuTextLeft.active::before {
+    color: #000;
+}
+/* （グループA/C に対しては .menuTextLeft.active では表示しない） */
+/* ------------------------------------------------------------------- */
+
+/* 右下部（言語スイッチ含む） */
+.rightColum2 {
+    flex: 1;
+}
+.rightcolumn2_top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 63px;
+}
+.rightcolumn2_top img {
+    width: 50px;
+}
+.rightcolumn2_under {
+    margin-top: 20px;
+}
+
+/* ----- 言語スイッチ用スタイル ----- */
+.modalLangSwitch {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.langLink {
+    text-decoration: none;
+}
+.langText {
+    font-size: 12px;
+    margin: 0;
+    white-space: nowrap;
+    color: #e5e5e5;                  /* デフォルトはグレー */
+    cursor: pointer;
+}
+.langLink:hover .langText {
+    color: #000;                     /* ホバーで黒 */
+}
+.activeLang .langText {
+    color: #000 !important;          /* アクティブ言語は常に黒 */
+}
+.langSlash {
+    margin: 0 5px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+/* ----- 左サイド固定要素（別パーツ） ----- */
+.leftColum1 {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    gap: 40px;
+    width: 13%;
+}
+.logoImg {
+    width: 68%;
+}
+
+/* ----- メディアクエリ: (max-width: 1150px) ----- */
+@media (max-width: 1150px) {
+    .modalContainer {
+        padding-left: 9%;
+    }
+    .modalInner {
+        padding: 57px 5.% 0 1.43%;
+    }
+}
+
+/* ----- メディアクエリ: (max-width: 850px) ----- */
+@media (max-width: 850px) {
+    .modalContainer {
+        padding-left: 0%;
+    }
+    .modalInner {
+        padding: 57px 7.3% 0 3.43%;
+        margin-left: 0;
+        border-left: none;
+    }
+    .modalInnerVariantB {
+        padding: 47px 7.3% 0 1.43%;
+        margin-left: 0;
+        border-left: none;
+    }
+    .rightColum1 {
+        display: none;
+    }
+    .rightColum2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .modalLangSwitch {
+        margin-right: 0;
+    }
+    .rightcolumn2_top {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .leftColum2 a {
+        margin-top: 0 !important;
+    }
+    .menuLinkLeft {
+        font-size: 25px;
+    }
+
+    @media (max-width: 540px) {
+        .modalInner {
+            padding: 30px 6.3% 0 3.43%;
+            height: calc(100vh - 30px);
+            display: flex;
+            flex-direction: column;
+        }
+        .menuLinkLeft {
+            font-size: 16px;
+        }
+        .leftColum2 {
+            padding-top: 0;
+            gap: 20px;
+        }
+        .rightcolumn2_top {
+            gap: 20px;
+        }
+        .langText {
+            font-size: 16px !important;
+        }
+        .langSlash {
+            font-size: 16px;
+        }
+        .modalMenu {
+            flex: 0 0 20%;
+        }
+        .modalCanvas {
+            flex: 0 0 80%;
+        }
+    }
+}

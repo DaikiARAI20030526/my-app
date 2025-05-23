@@ -1,0 +1,198 @@
+/* Member Page CSS */
+
+/* グリッド設定：各カードを200px固定、4枚並ぶように */
+.memberContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    padding: 86px 8.5% 96px 8.5%;
+    gap: 40px;
+    justify-content: center;
+  }
+  
+  /* 仕切り線 */
+  ._line {
+    width: 89.4%;
+    margin: 0 auto;
+    border: 0.3px solid #e5e5e5;
+  }
+  
+  /* 各カードコンテナ */
+  .member {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* カード内部 */
+  .member_inner {
+    width: 200px;   /* カード幅を200pxに固定 */
+    height: 200px;
+    border: solid 0.3px #e5e5e5;
+    padding: 15px 12px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .member_inner_1 {
+    width: auto;
+  }
+  
+  /* 名前部分 */
+  .member_inner_1a {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    margin: 0;
+  }
+  
+  .member_inner_1b {
+    font-size: 13.5px;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    margin: 0;
+    padding-top: 2px;
+  }
+  
+  .member_inner_2 {
+    margin-top: 8px;
+  }
+  
+  /* 外部リンク部分 */
+  .member_inner_2 k {
+    font-size: 12px;
+  }
+  
+  .member_inner_2 .member_link {
+    color: #00AFEC;
+    display: block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    font-size: 12px;
+  }
+  
+  /* ポジション部分 */
+  .member_inner_3 p {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    margin: 0;
+  }
+  
+  /* 募集情報セクション */
+  .member_recruiting {
+    width: 100%;
+  }
+  
+  .member_recruiting_inner {
+    padding: 0px 8.5% 96px 8.5%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* 左カラム */
+  .member_recruiting_inner_left {
+    width: 38%;
+    margin: 0;
+  }
+  .member_recruiting_inner_left p {
+    font-size: 15px;
+    font-weight: 400;
+    white-space: normal; 
+    word-break: break-word; 
+    letter-spacing: 2.7px;
+    line-height: 2.4;
+  }
+  
+  /* 右カラム */
+  .member_recruiting_inner_right {
+    width: 50%;
+  }
+  .member_recruiting_inner_right a {
+    text-decoration-line: none;
+  }
+  
+  /* 募集情報ボタンの設定 */
+  .member_recruiting_inner_right_button {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding: 20px 48px 15px 35px;
+    color: #e5e5e5;
+    border: solid 0.5px #e5e5e5;  /* borderを0.5pxに設定 */
+    font-weight: 400;             /* font-weightを400に設定 */
+    transition: none;             /* トランジション無効 */
+  }
+  
+  .member_recruiting_inner_right_button:hover {
+    color: #000;
+    border-color: #000;
+  }
+  
+  .member_recruiting_inner_right_button p {
+    width: 50%;
+    white-space: nowrap;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  .member_recruiting_inner_right_button k {
+    width: 50%;
+    white-space: nowrap;
+    font-size: 50px;
+    text-align: right;
+  }
+  
+  /* .page_member_recruiting_inner の幅 */
+  .page_member_recruiting_inner {
+    width: 42%;
+  }
+  
+  @media (max-width: 540px) {
+    /* 1. memberContainer の padding を 25px 6.6% 45px 6.6% に変更し、グリッドのカラム数を2列（固定幅200px）に調整 */
+    .memberContainer {
+      padding: 25px 6.6% 45px 6.6%;
+      grid-template-columns: repeat(2, 40.04vw);
+      gap: 25px;
+    }
+  
+    /* 2. member_inner の幅と高さをグリッドの幅に合わせて固定（ここでは200px） */
+    .member_inner {
+      width: 34.41vw;
+      height: 29.41vh;
+    }
+  
+    /* 3. member_recruiting_inner の padding を 0px 6.6% 45px 6.6% に変更し、flex-directionを column に設定 */
+    .member_recruiting_inner {
+      padding: 0px 6.6% 45px 6.6%;
+      flex-direction: column;
+    }
+  
+    /* 4. member_recruiting_inner_left の幅を 100% に変更 */
+    .member_recruiting_inner_left {
+      width: 100%;
+    }
+  
+    /* 5. member_recruiting_inner_left 内の p 要素の margin-top を 0 に設定 */
+    .member_recruiting_inner_left p {
+      margin-top: 0;
+      font-size: 14px;
+      line-height: normal;
+      padding-top: 28px;
+    }
+  
+    /* 6. member_recruiting_inner_right の幅を 100%、margin-left を 0 にし、内部の要素を中央寄せに */
+    .member_recruiting_inner_right {
+      width: 100%;
+      margin-left: 0;
+      justify-content: center;
+    }
+  
+    /* 7. member_recruiting_inner_right_button の padding を 20px 15px 15px 20px に変更 */
+    .member_recruiting_inner_right_button {
+      padding: 20px 15px 15px 20px;
+    }
+  }
+  

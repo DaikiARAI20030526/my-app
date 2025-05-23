@@ -1,0 +1,199 @@
+/* reserch.module.css */
+
+/* 全体コンテナ */
+.reserch {
+  width: 100%;
+  height: auto;
+}
+
+/* 下線 */
+.reserch_bottomline {
+  width: 89.4%;
+  border-bottom: 0.3px solid #d9d9d9;
+  margin: 0 auto;         /* コンテナ自体を中央配置 */
+  display: flex;
+  justify-content: center; /* 横方向の中央揃え */
+  align-items: center;
+}
+
+/* 内側コンテナ */
+.reserch_inner {
+  width: auto;
+  padding: 78px 8.5% 96px 8.5%;
+  display: flex;
+}
+
+/* 左カラム */
+.reserch_inner_left {
+  width: 45%;
+  display: flex;
+  flex-flow: column;
+  margin: 0;
+}
+
+/* タイトル */
+.reserch_inner_left_title {
+  width: 108%;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 4.14px;
+  margin: 0;
+}
+
+/* 概要 */
+.reserch_inner_left_overview {
+  width: 108%;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.52px;
+  white-space: normal;
+  text-align: justify;
+  word-break: break-word;
+  margin: 0;
+  padding-top: 40px;
+}
+
+/* 右カラム */
+.reserch_inner_right {
+  width: 55%;
+  display: flex;
+  flex-flow: column;
+  gap: 30px;
+  margin-left: 117px;
+}
+.reserch_inner_right p {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* キャプション（各ラベル） */
+.reserch_inner_caption p {
+  font-size: 12px;
+  margin: 0;
+}
+
+/* 右カラム：著者情報（上部） */
+.reserch_inner_right_author {
+  margin-top: -4px;
+}
+
+/* 著者情報（繰り返しフィールド全体） */
+.reserch_inner_right_authors {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+  display: flex;
+  gap: 12px; 
+  white-space: nowrap;
+}
+
+/* 著者フィールドの各要素（aboutauthor / separator）を横並びに */
+.authorRow {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+}
+
+/* 掲載誌 */
+.reserch_inner_right_magazine {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+}
+
+/* 掲載年月 */
+.reserch_inner_right_publicationDate {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+}
+
+/* 下部リンクエリア */
+.reserch_inner_right_bottom {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  margin-top: 13px;
+  padding: 20px 48px 15px 35px;
+  text-decoration: none;
+  color: #e5e5e5;
+  border: solid 1.5px #e5e5e5;
+}
+.reserch_inner_right_bottom p {
+  width: 50%;
+  white-space: nowrap;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* 新規追加：以前 “k” 用の代替クラス */
+.label {
+  font-size: 12px;
+}
+.arrow {
+  width: 50%;
+  white-space: nowrap;
+  font-size: 50px;
+  text-align: right;
+}
+
+/* === メディアクエリ：540px以下の場合 === */
+@media (max-width: 540px) {
+  /* 1. 内側コンテナの縦並びおよび左右の padding を6.6%に調整 */
+  .reserch_inner {
+    flex-direction: column;
+    padding: 25px 6.6% 45px 6.6%;
+  }
+  
+  /* 2. 左カラムと右カラムをフラットにして、親直下に配置 */
+  .reserch_inner_left,
+  .reserch_inner_right {
+    display: contents;
+  }
+  
+  /* 3. 右カラム内の p 要素の上マージンを5pxに（細かい調整） */
+  .reserch_inner_right p {
+    margin-top: 5px;
+  }
+  .reserch_inner_right_authors{
+    gap: 10px;
+  }
+  .authorRow {
+    gap: 5px;
+  }
+  
+  /* 4. 左カラムのタイトル下に余白を追加 */
+  .reserch_inner_left_title {
+    margin-bottom: 19px;
+  }
+  
+  /* 5. 各要素の表示順序（1: dynamicTitle, 2: 著者, 3: 掲載誌, 4: 掲載年月, 5: 概要, 6: 下部リンク） */
+  .dynamicTitle {
+    order: 1;
+  }
+  .reserch_inner_right_author {
+    order: 2;
+    margin-bottom: 12px;
+  }
+  .reserch_inner_right_magazine {
+    order: 3;
+    margin-bottom: 12px;
+  }
+  .reserch_inner_right_publicationDate {
+    order: 4;
+  }
+  .reserch_inner_left_overview {
+    order: 5;
+    padding-top: 28px;
+  }
+  .reserch_inner_right_bottom {
+    order: 6;
+    margin-top: 24px;
+  }
+}

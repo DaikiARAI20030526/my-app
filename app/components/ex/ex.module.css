@@ -1,0 +1,29 @@
+/* Page.module.css */
+
+.pageContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+}
+
+/* 540px以下の場合：縦並びに変更 */
+@media (max-width: 540px) {
+  .pageContainer {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .left,
+  .right {
+    width: 100%;
+  }
+}
