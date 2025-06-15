@@ -251,7 +251,7 @@ export default function MenuModal({ onClose, variant = "a" }) {
 
         {/* modalCanvas 部分 */}
         <div className={styles.modalCanvas}>
-          <a>ここに</a>
+          <a></a>
         </div>
 
       </div>
