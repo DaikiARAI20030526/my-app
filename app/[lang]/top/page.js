@@ -61,6 +61,11 @@ const content = {
   },
 };
 
+export async function generateStaticParams() {
+  return [{ lang: 'jp' }, { lang: 'en' }];
+}
+
+
 export const revalidate = 60;
 
 // 2. ページのpropsで `params` を受け取り、`lang` を取得
