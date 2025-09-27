@@ -2,9 +2,9 @@
 
 import React from 'react';
 import '../../../globals.css';
-import ResearchStickyHeader from "../../../../components/ResearchStickyHeader/ResearchStickyHeader";
-import Subtitle from "../../../../components/subtitle/subtitle";
-import Ex from "../../../../components/ex/ex";
+import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader";
+import Subtitle from "../components/subtitle/subtitle";
+import Ex from "../components/ex/ex";
 import styles from "./page.module.css";
 
 // Next.js で ISR を使う場合の再生成時間
