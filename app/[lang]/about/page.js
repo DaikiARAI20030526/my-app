@@ -1,9 +1,10 @@
 // "use client";
 
-import '../../globals.css'; // パスを一つ上の階層に変更
-import ResearchStickyHeader from "../../../components/ResearchStickyHeader/ResearchStickyHeader"; // パスを変更
-import Subtitle from "../../../components/subtitle/subtitle"; // パスを変更
-import Ex from "../../../components/ex/ex"; // パスを変更
+import React from 'react';
+import '../../../globals.css';
+import ResearchStickyHeader from "../../../../components/ResearchStickyHeader/ResearchStickyHeader";
+import Subtitle from "../../../../components/subtitle/subtitle";
+import Ex from "../../../../components/ex/ex";
 import styles from "./page.module.css";
 
 // Next.js で ISR を使う場合の再生成時間
