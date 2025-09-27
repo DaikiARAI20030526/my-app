@@ -106,7 +106,7 @@ export default async function ResearchPage() {
                   </a>
                 ) : (
                   <div className={styles.reserch_inner_right_bottom}>
-                    <p className="font-stretched">リンク先URLが未設定です</p>
+                    <p className="font-stretched">準備中</p>
                   </div>
                 )}
               </div>

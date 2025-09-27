@@ -10,7 +10,7 @@ export default function TopBord({ bordname, notelink }) {
           {bordname}
         </span>
         <a
-          href="https://note.com/rich_hebe819"
+          href="https://note.com/csrc"
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.notelink} font-stretched`}

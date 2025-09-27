@@ -20,7 +20,7 @@ export default async function TopPage() {
     },
   })
 
-  const feed = await parser.parseURL("https://note.com/rich_hebe819/rss")
+  const feed = await parser.parseURL("https://note.com/csrc/rss")
 
   const articles = feed.items
     .filter((item) => item.title?.includes("お知らせ"))

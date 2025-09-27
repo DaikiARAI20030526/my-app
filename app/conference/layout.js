@@ -6,7 +6,7 @@ export default function ConferenceLayout({ children }) {
   return (
     <>
       <Toptitle />
-      <Title headline="会議・コンファレンス" />
+      <Title headline="研究業績" />
       <Achievement />
       {children}
     </>

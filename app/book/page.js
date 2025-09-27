@@ -83,12 +83,12 @@ export default async function BookPage() {
                       rel="noopener noreferrer"
                       className={styles.book_inner_left_buttom}
                     >
-                      <p>購入はこちらから</p>
+                      <p>詳しくはこちらから</p>
                       <k>→</k>
                     </a>
                   ) : (
                     <div className={styles.book_inner_left_buttom}>
-                      <p>現在購入はできません。</p>
+                      <p>準備中</p>
                       <k>×</k>
                     </div>
                   )}

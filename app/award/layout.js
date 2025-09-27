@@ -6,7 +6,7 @@ export default function AwardLayout({ children }) {
   return (
     <>
       <Toptitle />
-      <Title headline="研究実績" />
+      <Title headline="研究業績" />
       <Achievement />
       {children}
     </>

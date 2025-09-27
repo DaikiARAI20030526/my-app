@@ -74,7 +74,7 @@ export default function Footer() {
             </p>
           </div>
           <div className={styles.imageContainer}>
-            <Link href="#">
+            <Link href="https://note.com/csrc">
               <img
                 src="/icon.png"
                 alt="アイコン"

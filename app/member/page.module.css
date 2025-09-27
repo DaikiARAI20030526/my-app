@@ -150,6 +150,7 @@
     width: 42%;
   }
   
+  
   @media (max-width: 540px) {
     /* 1. memberContainer の padding を 25px 6.6% 45px 6.6% に変更し、グリッドのカラム数を2列（固定幅200px）に調整 */
     .memberContainer {
