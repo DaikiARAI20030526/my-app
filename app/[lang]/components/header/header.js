@@ -8,16 +8,20 @@ import styles from "./header.module.css";
 
 export default function Header({ pageTitle }) {
   const pathname = usePathname();
-  const isEnglish = pathname.startsWith("/en");
-
   const [showModal, setShowModal] = useState(false);
   const [hoveredLang, setHoveredLang] = useState(null);
   const [headerTitle, setHeaderTitle] = useState("");
+  
+  // 1. 現在の言語と、言語を除いたベースパスを取得
+  const segments = pathname.split('/');
+  const currentLang = segments[1] || 'jp'; // 'jp' or 'en'
+  const basePath = segments.slice(2).join('/');
 
   useEffect(() => {
     if (pageTitle && pageTitle.trim().length > 0) {
       setHeaderTitle(pageTitle);
     } else {
+      // document.titleはクライアントサイドでのみ利用可能
       setHeaderTitle(document.title);
     }
   }, [pageTitle, pathname]);
@@ -29,16 +33,12 @@ export default function Header({ pageTitle }) {
 
   const handleCloseModal = () => setShowModal(false);
 
+  // 2. シンプルになったカラーロジック
   const getEffectiveColor = (lang) => {
-    if (isEnglish) {
-      return lang === "jp"
-        ? hoveredLang === "jp" ? "#000" : "#e5e5e5"
-        : hoveredLang === "jp" ? "#e5e5e5" : "#000";
-    } else {
-      return lang === "jp"
-        ? hoveredLang === "en" ? "#e5e5e5" : "#000"
-        : hoveredLang === "en" ? "#000" : "#e5e5e5";
+    if (lang === currentLang) {
+      return "#000";
     }
+    return hoveredLang === lang ? "#000" : "#e5e5e5";
   };
 
   return (
@@ -47,7 +47,7 @@ export default function Header({ pageTitle }) {
         <div className={styles.topTitleInner}>
           <div className={styles.logoAndArrow}>
             <div className={styles.logoInner}>
-              <Link href="/top">
+              <Link href={`/${currentLang}`}>
                 <img
                   src="/B-vertical-J.png"
                   alt="アイコン"
@@ -55,14 +55,14 @@ export default function Header({ pageTitle }) {
                 />
               </Link>
             </div>
-            {/* arrowImg は削除 */}
           </div>
           <div className={styles.headerTitle}>
             <p>{headerTitle}</p>
           </div>
           <div className={styles.rightSide}>
             <div className={styles.languageSwitch}>
-              <Link href="/jp">
+              {/* 3. 動的なリンク先を生成 */}
+              <Link href={`/jp/${basePath}`}>
                 <p
                   className={styles.langText}
                   style={{ color: getEffectiveColor("jp") }}
@@ -73,7 +73,7 @@ export default function Header({ pageTitle }) {
                 </p>
               </Link>
               <span className={styles.langSlash}>/</span>
-              <Link href="/en">
+              <Link href={`/en/${basePath}`}>
                 <p
                   className={styles.langText}
                   style={{ color: getEffectiveColor("en") }}
