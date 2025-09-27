@@ -1,11 +1,11 @@
-import Toptitle from "../../components/toptitle/toptitle";
-import Navigation from "../../components/navigation/navigation";
-import TopBord from "../../components/top_bord/top_bord";
-import Newscardlist from "../../components/newscardlist/newscardlist";
-import ProjectCardList from "../../components/projectcardlist/projectcardlist";
-import TopPageContent from "../../components/TopPageContent/TopPageContent";
-import InternalNavigation from "../../components/InternalNavigation/InternalNavigation";
-import ResearchStickyHeader from "../../components/ResearchStickyHeader/ResearchStickyHeader";
+import Toptitle from "../components/toptitle/toptitle";
+import Navigation from "../components/navigation/navigation";
+import TopBord from "../components/top_bord/top_bord";
+import Newscardlist from "../components/newscardlist/newscardlist";
+import ProjectCardList from "../components/projectcardlist/projectcardlist";
+import TopPageContent from "../components/TopPageContent/TopPageContent";
+import InternalNavigation from "../components/InternalNavigation/InternalNavigation";
+import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader";
 import Parser from "rss-parser";
 
 // 1. 日本語と英語のテキストをオブジェクトとして定義
