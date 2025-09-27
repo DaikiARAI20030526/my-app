@@ -1,7 +1,7 @@
 // "use client";
 
 import React from 'react';
-import '../../../globals.css';
+import '../../globals.css';
 import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader";
 import Subtitle from "../components/subtitle/subtitle";
 import Ex from "../components/ex/ex";
