@@ -1,3 +1,6 @@
-// app/page.js
-// └─ app/top/page.js の default export をそのままルートにする
-export { default } from './top/page'
+import { redirect } from 'next/navigation';
+
+export default function RootPage() {
+  // デフォルトの言語である日本語ページ（/jp）にリダイレクトする
+  redirect('/jp');
+}
