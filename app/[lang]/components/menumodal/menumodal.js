@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
-import { usePathname, useRouter } from "next/navigation"; // 1. useRouter をインポート
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./menumodal.module.css";
 
 // テキストを多言語で定義
@@ -44,7 +44,7 @@ const content = {
 
 export default function MenuModal({ onClose, variant = "a" }) {
   const pathname = usePathname();
-  const router = useRouter(); // 2. routerを初期化
+  const router = useRouter();
 
   const segments = pathname.split('/');
   const currentLang = segments[1] || 'jp';
@@ -64,10 +64,9 @@ export default function MenuModal({ onClose, variant = "a" }) {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  // 3. 言語切り替え用のハンドラを作成
   const handleLangSwitch = (e, href) => {
-    e.preventDefault(); // <a>タグのデフォルトのページ遷移を止める
-    router.push(href);  // Next.jsのルーターでページを遷移させる
+    e.preventDefault();
+    router.push(href);
   };
 
   return createPortal(
@@ -145,11 +144,16 @@ export default function MenuModal({ onClose, variant = "a" }) {
                     </p>
                   </Link>
                 </div>
+                {/* ▼▼▼ ここから変更 ▼▼▼ */}
                 <div className={styles.rightGroupA}>
                   <Link href={`/${currentLang}/about#citizenscience`}><p className={styles.menuTextLeft} onClick={onClose}>{t.whatIsCS}</p></Link>
-                  <Link href={`/${currentLang}/about#examples`}><p className={styles.menuTextLeft} onClick={onClose}>{t.csExamples}</p></Link>
+                  {/* currentLangが'en'でない場合のみ、csExamplesを表示 */}
+                  {currentLang !== 'en' && (
+                    <Link href={`/${currentLang}/about#examples`}><p className={styles.menuTextLeft} onClick={onClose}>{t.csExamples}</p></Link>
+                  )}
                   <Link href={`/${currentLang}/about#research-area`}><p className={styles.menuTextLeft} onClick={onClose}>{t.ourResearch}</p></Link>
                 </div>
+                {/* ▲▲▲ ここまで変更 ▲▲▲ */}
 
                 <div className={styles.rightGroupB}>
                   <Link href={`/${currentLang}/research`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/research`) ? styles.active : ""}`} onClick={onClose}>{t.papers}</p></Link>
@@ -164,7 +168,6 @@ export default function MenuModal({ onClose, variant = "a" }) {
               <div className={styles.rightColum2}>
                 <div className={styles.rightcolumn2_top} style={{ gap: currentLang === 'en' ? '72.8px' : '50px' }}>
                   <div className={styles.modalLangSwitch}>
-                    {/* 4. <Link>を<a>に変更し、onClickに新しいハンドラを渡す */}
                     <a
                       href={`/jp/${basePath}`}
                       className={`${styles.langLink} ${
