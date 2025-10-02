@@ -1,16 +1,15 @@
-// "use client";
+"use client";
 
+// ▼▼▼ ここから変更 ▼▼▼
 import React from 'react';
+import { useParams } from 'next/navigation'; // useParams をインポート
 import '../../globals.css';
 import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader";
 import Subtitle from "../components/subtitle/subtitle";
 import Ex from "../components/ex/ex";
 import styles from "./page.module.css";
+// ▲▲▲ ここまで変更 ▲▲▲
 
-// Next.js で ISR を使う場合の再生成時間
-export const revalidate = 60;
-
-// 1. 言語ごとのテキストを定義
 const content = {
   jp: {
     title1: "シチズンサイエンスってなに？",
@@ -24,54 +23,66 @@ const content = {
     title2: "Citizen Science in Practice",
     title3: "Research Areas of Our Center",
     section1_text: "Citizen science is scientific research conducted through collaboration between professional researchers and members of the public. Projects can take many forms; some are led by experts, while others are initiated and driven by participants themselves. Since the concept was established in the 1990s, it has been applied to a wide range of goals, from generating new scientific knowledge to solving local community problems.Citizen science spans a wide range of academic fields, from the natural sciences to the humanities and social sciences. While common in the natural sciences—for example, in wildlife monitoring and astronomical observation—it is also actively applied in the humanities and social sciences, with projects on local history and social issues. Recent advances in digital technology have also enabled online participation, opening the door to even more diverse forms of public engagement.Public involvement in Citizen Science also varies in depth. The contributory model, in which participants assist with tasks such as data collection and classification, is common. However, more collaborative and co-creative models—where participants take part in setting research questions, designing methods, analyzing data, and even publishing results—are increasingly widespread. In addition, independent initiatives, where participants organize and conduct research autonomously, represent another vital approach within Citizen Science.Through these diverse approaches, Citizen Science aims to advance both practical problem-solving and theoretical research, grounded in collaboration with local communities and industry.",
-    section3_text: "The Citizen Science Research Center at Fukuoka University's Faculty of Commerce aims to advance the field of Citizen Science. We do this by promoting research on collaborative knowledge creation between the public and researchers, and developing methods and infrastructure to support public participation in research. Our vision is a society where anyone, not just professional researchers, can pursue their curiosity through research and inquiry.As a research organization within the Faculty of Commerce, our center focuses on addressing the management and marketing challenges inherent in Citizen Science. The practice of Citizen Science involves numerous operational hurdles, and our research addresses these, including: developing effective outreach strategies, building partnerships with academic, government, and corporate sectors, ensuring strong project management, and establishing sustainable funding models.Additionally, our center fosters interdisciplinary research by welcoming Citizen Scientists and professional researchers from diverse fields as visiting fellows. We collaborate with experienced citizen-led research practitioners and experts in fields such as community management, science education, platform development, and gerontology. Together, we explore the full potential of Citizen Science from multiple perspectives.",
+    section3_text: "The Citizen Science Research Center at Fukuoka University's Faculty of Commerce aims to advance the field of Citizen Science. We do this by promoting research on collaborative knowledge creation between the public and researchers, and by developing methods and infrastructure to support public participation in research. Our vision is a society where anyone, not just professional researchers, can pursue their curiosity through research and inquiry.As a research organization within the Faculty of Commerce, our center focuses on addressing the management and marketing challenges inherent in Citizen Science. The practice of Citizen Science involves numerous operational hurdles, and our research addresses these, including: developing effective outreach strategies, building partnerships with academic, government, and corporate sectors, ensuring strong project management, and establishing sustainable funding models.Additionally, our center fosters interdisciplinary research by welcoming Citizen Scientists and professional researchers from diverse fields as visiting fellows. We collaborate with experienced citizen-led research practitioners and experts in fields such as community management, science education, platform development, and gerontology. Together, we explore the full potential of Citizen Science from multiple perspectives.",
   },
 };
 
-// 2. ページのpropsで `params` を受け取る
-export default function AboutPage({ params: { lang } }) {
-  // 3. URLの言語パラメータ（jp or en）に応じてテキストを選択
-  const t = content[lang] || content['jp']; // langが存在しない場合は日本語をデフォルトに
+// ▼▼▼ ここから変更 ▼▼▼
+// propsから `params` を削除
+export default function AboutPage() {
+  // useParamsフックでパラメータを取得
+  const params = useParams();
+  const lang = params.lang || 'jp';
+
+  // URLの言語パラメータに応じてテキストを選択
+  const t = content[lang] || content['jp'];
+// ▲▲▲ ここまで変更 ▲▲▲
+
+  const pageTitles = lang === 'en' 
+    ? [t.title1, t.title3] 
+    : [t.title1, t.title2, t.title3];
+    
+  const subtitleIds = lang === 'en' 
+    ? ["subtitle1", "subtitle3"] 
+    : ["subtitle1", "subtitle2", "subtitle3"];
 
   return (
     <main>
       <ResearchStickyHeader
-        pageTitles={[t.title1, t.title2, t.title3]}
-        subtitleIds={["subtitle1", "subtitle2", "subtitle3"]}
+        pageTitles={pageTitles}
+        subtitleIds={subtitleIds}
       />
 
-      {/* --- 1つ目のセクション --- */}
       <div id="citizenscience" className={styles.anchorSection}>
         <Subtitle title={t.title1} id="subtitle1" />
         <div className={`${styles.text1} font-stretched`}>
-          {/* 4. 選択された言語のテキストを表示 */}
-          {t.section1_text.split('\n').map((line, index) => (
+          {t.section1_text.split('.').map((line, index, arr) => (
             <React.Fragment key={index}>
-              {line}
-              <br />
+              {line}{arr.length - 1 === index ? '' : '.'}
+              <br/>
             </React.Fragment>
           ))}
           <div className={styles.line}></div>
         </div>
       </div>
 
-      {/* --- 2つ目のセクション --- */}
-      <div id="examples" className={styles.anchorSection}>
-        <Subtitle title={t.title2} id="subtitle2" />
-        <div className={`${styles.text1} font-stretched`}>
-          <Ex />
-          <div className={styles.line}></div>
+      {lang !== 'en' && (
+        <div id="examples" className={styles.anchorSection}>
+          <Subtitle title={t.title2} id="subtitle2" />
+          <div className={`${styles.text1} font-stretched`}>
+            <Ex />
+            <div className={styles.line}></div>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* --- 3つ目のセクション --- */}
       <div id="researcharea" className={styles.anchorSection}>
         <Subtitle title={t.title3} id="subtitle3" />
         <div className={`${styles.text2} font-stretched`}>
-          {t.section3_text.split('\n').map((line, index) => (
+          {t.section3_text.split('.').map((line, index, arr) => (
             <React.Fragment key={index}>
-              {line}
-              <br />
+              {line}{arr.length - 1 === index ? '' : '.'}
+              <br/>
             </React.Fragment>
           ))}
           <div className={styles.line2}></div>

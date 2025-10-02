@@ -1,30 +1,59 @@
-// MenuModal.jsx
-
 "use client";
 
 import React from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // 1. useRouter をインポート
 import styles from "./menumodal.module.css";
+
+// テキストを多言語で定義
+const content = {
+  jp: {
+    top: "トップ",
+    about: "シチズンサイエンスについて",
+    research: "研究実績",
+    member: "研究メンバーについて",
+    ongoingProjects: "進行中のプロジェクト",
+    news: "お知らせ",
+    whatIsCS: "シチズンサイエンスってなに？",
+    csExamples: "実例で見るシチズンサイエンス",
+    ourResearch: "当センターの研究領域",
+    papers: "論文",
+    conference: "学会発表",
+    books: "書籍",
+    awards: "受賞",
+    lectures: "講演など",
+  },
+  en: {
+    top: "Top",
+    about: "About Citizen Science",
+    research: "Research",
+    member: "Members",
+    ongoingProjects: "Ongoing Projects",
+    news: "News",
+    whatIsCS: "What is Citizen Science?",
+    csExamples: "Examples in Practice",
+    ourResearch: "Our Research Area",
+    papers: "Papers",
+    conference: "Conferences",
+    books: "Books",
+    awards: "Awards",
+    lectures: "Lectures, etc.",
+  },
+};
 
 export default function MenuModal({ onClose, variant = "a" }) {
   const pathname = usePathname();
+  const router = useRouter(); // 2. routerを初期化
 
-  // 「#」以降を除いたパス同士を比較してメニューリンクのアクティブ判定
+  const segments = pathname.split('/');
+  const currentLang = segments[1] || 'jp';
+  const basePath = segments.slice(2).join('/');
+  const t = content[currentLang] || content.jp;
+
   const isActive = (href) => {
     const [path] = href.split("#");
     return path === pathname;
-  };
-
-  // 現在の言語が "en" かどうかを判定
-  const isLangActive = (lang) => {
-    if (lang === "en") {
-      // Path が "/en" で始まるものを英語ページとみなす
-      return pathname.startsWith("/en");
-    }
-    // それ以外はすべて日本語ページ
-    return !pathname.startsWith("/en");
   };
 
   const modalInnerClass =
@@ -35,203 +64,126 @@ export default function MenuModal({ onClose, variant = "a" }) {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  // 3. 言語切り替え用のハンドラを作成
+  const handleLangSwitch = (e, href) => {
+    e.preventDefault(); // <a>タグのデフォルトのページ遷移を止める
+    router.push(href);  // Next.jsのルーターでページを遷移させる
+  };
+
   return createPortal(
     <div className={styles.modalContainer}>
       <div className={modalInnerClass}>
-
-        {/* --- modalMenu --- */}
         <div className={styles.modalMenu}>
           <div className={styles.menuLeft}>
-
             {/* 左カラム */}
             <div className={styles.leftColum2}>
-              <a
-                href="/top"
+              <Link
+                href={`/${currentLang}`}
                 className={`${styles.menuLinkLeft} ${
-                  isActive("/top") ? styles.active : ""
+                  isActive(`/${currentLang}`) ? styles.active : ""
                 }`}
+                onClick={onClose}
               >
-                トップ
-              </a>
-              <a
-                href="/about"
+                {t.top}
+              </Link>
+              <Link
+                href={`/${currentLang}/about`}
                 className={`${styles.menuLinkLeft} ${
-                  isActive("/about") ? styles.active : ""
+                  isActive(`/${currentLang}/about`) ? styles.active : ""
                 }`}
                 style={{ marginTop: "10px" }}
+                onClick={onClose}
               >
-                シチズンサイエンスについて
-              </a>
-              <a
-                href="/research"
+                {t.about}
+              </Link>
+              <Link
+                href={`/${currentLang}/research`}
                 className={`${styles.menuLinkLeft} ${
-                  isActive("/research") ? styles.active : ""
+                  isActive(`/${currentLang}/research`) ? styles.active : ""
                 }`}
                 style={{ marginTop: "46px" }}
+                onClick={onClose}
               >
-                研究実績
-              </a>
-              <a
-                href="/member"
+                {t.research}
+              </Link>
+              <Link
+                href={`/${currentLang}/member`}
                 className={`${styles.menuLinkLeft} ${
-                  isActive("/member") ? styles.active : ""
+                  isActive(`/${currentLang}/member`) ? styles.active : ""
                 }`}
                 style={{ marginTop: "119px" }}
+                onClick={onClose}
               >
-                研究メンバーについて
-              </a>
+                {t.member}
+              </Link>
             </div>
 
             {/* 右カラム */}
             <div className={styles.menuRight}>
               <div className={styles.rightColum1}>
-
                 <div className={styles.rightGroupC}>
-                  <Link href="/top#project">
+                  <Link href={`/${currentLang}#project`}>
                     <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/top#project") ? styles.active : ""
-                      }`}
+                      className={styles.menuTextLeft}
                       onClick={() => {
                         onClose();
                         setTimeout(() => scrollToAnchor("project"), 100);
                       }}
                     >
-                      進行中のプロジェクト
+                      {t.ongoingProjects}
                     </p>
                   </Link>
-                  <Link href="/top#news">
+                  <Link href={`/${currentLang}#news`}>
                     <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/top#news") ? styles.active : ""
-                      }`}
+                      className={styles.menuTextLeft}
                       onClick={() => {
                         onClose();
                         setTimeout(() => scrollToAnchor("news"), 100);
                       }}
                     >
-                      お知らせ
+                      {t.news}
                     </p>
                   </Link>
                 </div>
-
                 <div className={styles.rightGroupA}>
-                  <Link href="/about#citizenscience">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/about#citizenscience")
-                          ? styles.active
-                          : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      シチズンサイエンスってなに？
-                    </p>
-                  </Link>
-                  <Link href="/about#examples">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/about#examples") ? styles.active : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      実例で見るシチズンサイエンス
-                    </p>
-                  </Link>
-                  <Link href="/about#research-area">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/about#research-area")
-                          ? styles.active
-                          : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      当センターの研究領域
-                    </p>
-                  </Link>
+                  <Link href={`/${currentLang}/about#citizenscience`}><p className={styles.menuTextLeft} onClick={onClose}>{t.whatIsCS}</p></Link>
+                  <Link href={`/${currentLang}/about#examples`}><p className={styles.menuTextLeft} onClick={onClose}>{t.csExamples}</p></Link>
+                  <Link href={`/${currentLang}/about#research-area`}><p className={styles.menuTextLeft} onClick={onClose}>{t.ourResearch}</p></Link>
                 </div>
 
                 <div className={styles.rightGroupB}>
-                  <Link href="/research">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/research") ? styles.active : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      論文
-                    </p>
-                  </Link>
-                  <Link href="/conference">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/conference") ? styles.active : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      学会発表
-                    </p>
-                  </Link>
-                  <Link href="/book">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/book") ? styles.active : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      書籍
-                    </p>
-                  </Link>
-                  <Link href="/award">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/award") ? styles.active : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      受賞
-                    </p>
-                  </Link>
-                  <Link href="/lecture">
-                    <p
-                      className={`${styles.menuTextLeft} ${
-                        isActive("/lecture") ? styles.active : ""
-                      }`}
-                      onClick={onClose}
-                    >
-                      講演など
-                    </p>
-                  </Link>
+                  <Link href={`/${currentLang}/research`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/research`) ? styles.active : ""}`} onClick={onClose}>{t.papers}</p></Link>
+                  <Link href={`/${currentLang}/conference`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/conference`) ? styles.active : ""}`} onClick={onClose}>{t.conference}</p></Link>
+                  <Link href={`/${currentLang}/book`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/book`) ? styles.active : ""}`} onClick={onClose}>{t.books}</p></Link>
+                  <Link href={`/${currentLang}/award`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/award`) ? styles.active : ""}`} onClick={onClose}>{t.awards}</p></Link>
+                  <Link href={`/${currentLang}/lecture`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/lecture`) ? styles.active : ""}`} onClick={onClose}>{t.lectures}</p></Link>
                 </div>
-
               </div>
 
               {/* 言語スイッチ */}
               <div className={styles.rightColum2}>
-                <div className={styles.rightcolumn2_top}>
+                <div className={styles.rightcolumn2_top} style={{ gap: currentLang === 'en' ? '72.8px' : '50px' }}>
                   <div className={styles.modalLangSwitch}>
-                    <Link
-                      href="/jp"
+                    {/* 4. <Link>を<a>に変更し、onClickに新しいハンドラを渡す */}
+                    <a
+                      href={`/jp/${basePath}`}
                       className={`${styles.langLink} ${
-                        isLangActive("jp") ? styles.activeLang : ""
+                        currentLang === "jp" ? styles.activeLang : ""
                       }`}
+                      onClick={(e) => handleLangSwitch(e, `/jp/${basePath}`)}
                     >
-                      <p className={styles.langText} onClick={onClose}>
-                        JP
-                      </p>
-                    </Link>
+                      <p className={styles.langText}>JP</p>
+                    </a>
                     <span className={styles.langSlash}>/</span>
-                    <Link
-                      href="/en"
+                    <a
+                      href={`/en/${basePath}`}
                       className={`${styles.langLink} ${
-                        isLangActive("en") ? styles.activeLang : ""
+                        currentLang === "en" ? styles.activeLang : ""
                       }`}
+                      onClick={(e) => handleLangSwitch(e, `/en/${basePath}`)}
                     >
-                      <p className={styles.langText} onClick={onClose}>
-                        EN
-                      </p>
-                    </Link>
+                      <p className={styles.langText}>EN</p>
+                    </a>
                   </div>
                   <img
                     src="/back.png"
@@ -240,22 +192,15 @@ export default function MenuModal({ onClose, variant = "a" }) {
                     onClick={onClose}
                   />
                 </div>
-                <div className={styles.rightcolumn2_under}>
-                  {/* 下部コンテンツ */}
-                </div>
+                <div className={styles.rightcolumn2_under}></div>
               </div>
-
             </div>
           </div>
         </div>
-
-        {/* modalCanvas 部分 */}
-        <div className={styles.modalCanvas}>
-          <a></a>
-        </div>
-
+        <div className={styles.modalCanvas}></div>
       </div>
     </div>,
     document.body
   );
 }
+

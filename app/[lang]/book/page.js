@@ -3,33 +3,60 @@ import DynamicStickyHeader from "../components/DynamicStickyHeader/DynamicSticky
 import Image from 'next/image';
 import styles from './page.module.css'; 
 
+// 1. 静的なUIテキストを言語ごとに定義
+const content = {
+  jp: {
+    noData: "まだデータがありません",
+    noGroup: "book グループがありません",
+    authors: "著者",
+    publisher: "出版社",
+    publicationDate: "出版日",
+    moreDetails: "詳しくはこちらから",
+    comingSoon: "準備中",
+  },
+  en: {
+    noData: "No data available yet",
+    noGroup: "'book' group not found",
+    authors: "Authors",
+    publisher: "Publisher",
+    publicationDate: "Publication Date",
+    moreDetails: "More Details",
+    comingSoon: "Coming Soon",
+  },
+};
+
 export const revalidate = 60;
 
-export default async function BookPage() {
-  // "book" slug を持つコンテンツを取得
+// generateStaticParamsを追加して静的生成を有効化
+export async function generateStaticParams() {
+  return [{ lang: 'jp' }, { lang: 'en' }];
+}
+
+// 2. propsで `params` を受け取り、`lang` を取得
+export default async function BookPage({ params: { lang } }) {
+  // 3. URLの言語に応じて、表示するUIテキストを選択
+  const t = content[lang] || content.jp;
+
   const data = await microcmsClient.get({
-    endpoint: 'citizen', // microCMS のエンドポイント名に合わせる
+    endpoint: 'citizen',
     queries: {
       filters: 'slug[equals]book',
       limit: 100,
     },
   });
 
-  // コンテンツ配列を取得
   const contents = data.contents || [];
-
   if (contents.length === 0) {
-    return <p style={{ padding: '20px' }}>まだデータがありません</p>;
+    return <p style={{ padding: '20px' }}>{t.noData}</p>;
   }
 
-  // 各 book2.title の配列を作成（空でないもののみ）
+  // MicroCMSのタイトルは常に日本語フィールドを参照
   const bookTitles = contents
     .filter(item => item.book2 && item.book2.title)
     .map(item => item.book2.title);
 
   return (
     <>
-      {/* DynamicStickyHeader に bookTitles を渡す */}
       <DynamicStickyHeader titleArray={bookTitles} />
 
       {contents.map((item) => {
@@ -37,12 +64,12 @@ export default async function BookPage() {
         if (!book2) {
           return (
             <div key={item.id}>
-              <p>book グループがありません</p>
+              <p>{t.noGroup}</p>
             </div>
           );
         }
 
-        // 分割代入で各項目を取得
+        // MicroCMSのデータは常に日本語フィールドをそのまま使用
         const { title, author, publisher, publication, bookimage, url } = book2;
 
         return (
@@ -50,12 +77,11 @@ export default async function BookPage() {
             <div className={styles.book_inner}>
               {/* 左カラム */}
               <div className={styles.book_inner_left}>
-                {/* タイトル部分：dynamicTitle クラスとユニークな id を付与 */}
                 <div id={`bookTitle-${item.id}`} className="dynamicTitle">
                   <p className={styles.book_inner_left_title}>{title}</p>
                 </div>
                 <div className={styles.book_inner_left_author}>
-                  <k>著者</k>
+                  <k>{t.authors}</k>
                   {Array.isArray(author) && author.length > 0 && (
                     <div className={styles.book_inner_left_authors}>
                       {author.map((authorItem, index) => (
@@ -68,12 +94,12 @@ export default async function BookPage() {
                   )}
                 </div>
                 <div className={styles.book_inner_left_publisher}>
-                  <k>出版社</k>
+                  <k>{t.publisher}</k>
                   <p>{publisher}</p>
                 </div>
                 <div className={styles.book_inner_left_bottom}>
                   <div className={styles.book_inner_left_publication}>
-                    <k>出版日</k>
+                    <k>{t.publicationDate}</k>
                     <p>{publication}</p>
                   </div>
                   {url ? (
@@ -83,12 +109,12 @@ export default async function BookPage() {
                       rel="noopener noreferrer"
                       className={styles.book_inner_left_buttom}
                     >
-                      <p>詳しくはこちらから</p>
+                      <p>{t.moreDetails}</p>
                       <k>→</k>
                     </a>
                   ) : (
                     <div className={styles.book_inner_left_buttom}>
-                      <p>準備中</p>
+                      <p>{t.comingSoon}</p>
                       <k>×</k>
                     </div>
                   )}

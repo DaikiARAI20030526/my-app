@@ -1,15 +1,25 @@
 import Toptitle from "../components/toptitle/toptitle";
 import Title from "../components/title/title";
 import Achievement from "../components/achievement/achievement";
-import DynamicStickyHeader from "../components/DynamicStickyHeader/DynamicStickyHeader";
 
-export default function LectureLayout({ children }) {
+const content = {
+  jp: {
+    headline: "研究業績",
+  },
+  en: {
+    headline: "Research",
+  },
+};
+
+export default function AwardLayout({ children, params: { lang } }) {
+
+   const t = content[lang] || content.jp;
+
   return (
     <>
       <Toptitle />
-      <Title headline="研究業績" />
+      <Title headline={t.headline} />
       <Achievement />
-      <DynamicStickyHeader />
       {children}
     </>
   );

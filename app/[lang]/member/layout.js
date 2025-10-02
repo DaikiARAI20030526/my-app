@@ -1,11 +1,23 @@
 import Toptitle from "../components/toptitle/toptitle";
 import Title from "../components/title/title";
 
-export default function MemberLayout({ children }) {
+const content = {
+  jp: {
+    headline: "研究メンバーについて",
+  },
+  en: {
+    headline: "About Members",
+  },
+};
+
+
+export default function AwardLayout({ children, params: { lang } }) {
+
+   const t = content[lang] || content.jp;
   return (
     <>
       <Toptitle />
-      <Title headline="研究メンバーについて" />
+      <Title headline={t.headline} />
       {children}
     </>
   );

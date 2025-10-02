@@ -1,11 +1,11 @@
-import Toptitle from "../components/toptitle/toptitle";
-import Navigation from "../components/navigation/navigation";
-import TopBord from "../components/top_bord/top_bord";
-import Newscardlist from "../components/newscardlist/newscardlist";
-import ProjectCardList from "../components/projectcardlist/projectcardlist";
-import TopPageContent from "../components/TopPageContent/TopPageContent";
-import InternalNavigation from "../components/InternalNavigation/InternalNavigation";
-import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader";
+import Toptitle from "./components/toptitle/toptitle";
+import Navigation from "./components/navigation/navigation";
+import TopBord from "./components/top_bord/top_bord";
+import Newscardlist from "./components/newscardlist/newscardlist";
+import ProjectCardList from "./components/projectcardlist/projectcardlist";
+import TopPageContent from "./components/TopPageContent/TopPageContent";
+import InternalNavigation from "./components/InternalNavigation/InternalNavigation";
+import ResearchStickyHeader from "./components/ResearchStickyHeader/ResearchStickyHeader";
 import Parser from "rss-parser";
 
 // 1. 日本語と英語のテキストをオブジェクトとして定義
@@ -141,8 +141,8 @@ export default async function TopPage({ params: { lang } }) {
         naviname={t.nav3_name}
         naviexplanation={t.nav3_explanation}
         link={`/${lang}/${t.nav3_slug}`}
-        imagePath="/go 3 a.png"
-        imageHoverPath="/go 3 b.png"
+        imagePath="/go 1 a.png"
+        imageHoverPath="/go 1 b.png"
       />
 
       <div id="subtitle1" className="anchorSection">

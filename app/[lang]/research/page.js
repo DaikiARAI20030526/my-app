@@ -2,10 +2,39 @@ import { microcmsClient } from '@/lib/microcmsClient';
 import DynamicStickyHeader from "../components/DynamicStickyHeader/DynamicStickyHeader";
 import styles from './page.module.css'; 
 
+// 1. 静的なUIテキストを言語ごとに定義
+const content = {
+  jp: {
+    noData: "まだデータがありません",
+    noGroup: "research グループがありません",
+    authors: "著者",
+    journal: "掲載誌",
+    date: "掲載日",
+    detailsLink: "論文詳細はこちら",
+    externalLink: "（外部リンク）",
+    comingSoon: "準備中"
+  },
+  en: {
+    noData: "No data available yet",
+    noGroup: "'research' group not found",
+    authors: "Authors",
+    journal: "Journal / Publication",
+    date: "Publication Date",
+    detailsLink: "View Paper Details",
+    externalLink: "(External Link)",
+    comingSoon: "Coming Soon"
+  }
+};
+
 export const revalidate = 60;
 
-export default async function ResearchPage() {
-  // "research" slug を持つコンテンツを取得
+export async function generateStaticParams() {
+  return [{ lang: 'jp' }, { lang: 'en' }];
+}
+
+export default async function ResearchPage({ params: { lang } }) {
+  const t = content[lang] || content.jp;
+
   const data = await microcmsClient.get({
     endpoint: 'citizen',
     queries: {
@@ -16,17 +45,16 @@ export default async function ResearchPage() {
 
   const contents = data.contents || [];
   if (contents.length === 0) {
-    return <p style={{ padding: '20px' }}>まだデータがありません</p>;
+    return <p style={{ padding: '20px' }}>{t.noData}</p>;
   }
 
-  // 各研究カードのタイトル配列を作成（research2.title）
+  // 2. MicroCMSのタイトルは常に日本語フィールドを参照
   const researchTitles = contents
     .filter(item => item.research2 && item.research2.title)
     .map(item => item.research2.title);
 
   return (
     <>
-      {/* DynamicStickyHeader に researchTitles を渡す */}
       <DynamicStickyHeader titleArray={researchTitles} />
 
       {contents.map((item) => {
@@ -34,11 +62,12 @@ export default async function ResearchPage() {
         if (!research2) {
           return (
             <div key={item.id}>
-              <p className="font-stretched">research グループがありません</p>
+              <p className="font-stretched">{t.noGroup}</p>
             </div>
           );
         }
 
+        // 3. MicroCMSのデータは常に日本語フィールドをそのまま使用
         const { title, overview, magazine, publicationDate, author, url } = research2;
 
         return (
@@ -46,7 +75,6 @@ export default async function ResearchPage() {
             <div className={styles.reserch_inner}>
               {/* 左カラム */}
               <div className={styles.reserch_inner_left}>
-                {/* 研究タイトル部分：dynamicTitle クラスとユニークな id を付与 */}
                 <div id={`researchTitle-${item.id}`} className="dynamicTitle">
                   <p className={`${styles.reserch_inner_left_title} font-stretched`}>{title}</p>
                 </div>
@@ -56,8 +84,8 @@ export default async function ResearchPage() {
               {/* 右カラム */}
               <div className={styles.reserch_inner_right}>
                 <div className={styles.reserch_inner_right_author}>
-                <div className={`${styles.reserch_inner_caption} font-stretched`}>
-                  <p>著者</p>
+                  <div className={`${styles.reserch_inner_caption} font-stretched`}>
+                    <p>{t.authors}</p>
                   </div>
                   {Array.isArray(author) && author.length > 0 && (
                     <div className={styles.reserch_inner_right_authors}>
@@ -71,19 +99,17 @@ export default async function ResearchPage() {
                   )}
                 </div>
 
-                {/* 掲載誌：2行構成（上段ラベル、下段値） */}
                 <div className={styles.reserch_inner_right_magazine}>
-                <div className={`${styles.reserch_inner_caption} font-stretched`}>
-                    <p>掲載誌</p>
+                  <div className={`${styles.reserch_inner_caption} font-stretched`}>
+                    <p>{t.journal}</p>
                   </div>
                   <div>
                     <p className="font-stretched">{magazine}</p>
                   </div>
                 </div>
-                {/* 掲載日：2行構成（上段ラベル、下段値） */}
                 <div className={styles.reserch_inner_right_publicationDate}>
-                <div className={`${styles.reserch_inner_caption} font-stretched`}>
-                    <p>掲載日</p>
+                  <div className={`${styles.reserch_inner_caption} font-stretched`}>
+                    <p>{t.date}</p>
                   </div>
                   <div>
                     <p className="font-stretched">{publicationDate}</p>
@@ -98,15 +124,15 @@ export default async function ResearchPage() {
                     className={styles.reserch_inner_right_bottom}
                   >
                     <p className="font-stretched">
-                      論文詳細はこちら
+                      {t.detailsLink}
                       <br />
-                      （外部リンク）
+                      {t.externalLink}
                     </p>
                     <p>→</p>
                   </a>
                 ) : (
                   <div className={styles.reserch_inner_right_bottom}>
-                    <p className="font-stretched">準備中</p>
+                    <p className="font-stretched">{t.comingSoon}</p>
                   </div>
                 )}
               </div>

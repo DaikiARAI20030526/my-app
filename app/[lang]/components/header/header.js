@@ -12,7 +12,6 @@ export default function Header({ pageTitle }) {
   const [hoveredLang, setHoveredLang] = useState(null);
   const [headerTitle, setHeaderTitle] = useState("");
   
-  // 1. 現在の言語と、言語を除いたベースパスを取得
   const segments = pathname.split('/');
   const currentLang = segments[1] || 'jp'; // 'jp' or 'en'
   const basePath = segments.slice(2).join('/');
@@ -21,7 +20,6 @@ export default function Header({ pageTitle }) {
     if (pageTitle && pageTitle.trim().length > 0) {
       setHeaderTitle(pageTitle);
     } else {
-      // document.titleはクライアントサイドでのみ利用可能
       setHeaderTitle(document.title);
     }
   }, [pageTitle, pathname]);
@@ -33,7 +31,6 @@ export default function Header({ pageTitle }) {
 
   const handleCloseModal = () => setShowModal(false);
 
-  // 2. シンプルになったカラーロジック
   const getEffectiveColor = (lang) => {
     if (lang === currentLang) {
       return "#000";
@@ -59,9 +56,12 @@ export default function Header({ pageTitle }) {
           <div className={styles.headerTitle}>
             <p>{headerTitle}</p>
           </div>
-          <div className={styles.rightSide}>
+          {/* ▼▼▼ このdivタグに style を追加しました ▼▼▼ */}
+          <div 
+            className={styles.rightSide} 
+            style={{ gap: currentLang === 'en' ? '72.7px' : '50px' }}
+          >
             <div className={styles.languageSwitch}>
-              {/* 3. 動的なリンク先を生成 */}
               <Link href={`/jp/${basePath}`}>
                 <p
                   className={styles.langText}
@@ -86,7 +86,7 @@ export default function Header({ pageTitle }) {
             </div>
             <div className={styles.menuContainer}>
               <p className={styles.menuText} onClick={handleMenuClick}>
-                メニュー
+                {currentLang === 'en' ? 'Menu' : 'メニュー'}
               </p>
             </div>
           </div>
