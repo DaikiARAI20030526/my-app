@@ -24,7 +24,7 @@ const content = {
     groupA_top: "About Citizen Science",
     groupA_item1: "What is Citizen Science?",
     groupA_item2: "Examples in Practice", // この項目は非表示になる
-    groupA_item3: "Our Research Area",
+    groupA_item3: "Research Area of Our Center",
     groupB_top: "Research",
     groupB_item1: "Papers",
     groupB_item2: "Conferences",
@@ -53,7 +53,7 @@ export default function InternalNavigation() {
     : [ // jpページの場合
         { label: t.groupA_item1, href: `/${currentLang}/about#citizenscience` },
         { label: t.groupA_item2, href: `/${currentLang}/about#examples` },
-        { label: t.groupA_item3, href: `/${currentLang}/about#research-area` },
+        { label: t.groupA_item3, href: `/${currentLang}/about#researcharea` },
       ];
   // ▲▲▲ ここまで変更 ▲▲▲
 

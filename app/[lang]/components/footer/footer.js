@@ -29,7 +29,7 @@ const content = {
     aboutTitle: "About Citizen Science",
     aboutItem1: "What is Citizen Science?",
     aboutItem2: "Examples in Practice",
-    aboutItem3: "Our Research Area",
+    aboutItem3: "Research Area of Our Center",
     researchTitle: "Research",
     researchItem1: "Papers",
     researchItem2: "Conferences",
@@ -57,12 +57,12 @@ export default function Footer() {
   const aboutItems = currentLang === 'en'
     ? [ // 英語ページの場合
         { label: t.aboutItem1, href: `/${currentLang}/about#citizenscience` },
-        { label: t.aboutItem3, href: `/${currentLang}/about#research-area` },
+        { label: t.aboutItem3, href: `/${currentLang}/about#researcharea` },
       ]
     : [ // 日本語ページの場合
         { label: t.aboutItem1, href: `/${currentLang}/about#citizenscience` },
         { label: t.aboutItem2, href: `/${currentLang}/about#examples` },
-        { label: t.aboutItem3, href: `/${currentLang}/about#research-area` },
+        { label: t.aboutItem3, href: `/${currentLang}/about#researcharea` },
       ];
 
   return (
