@@ -47,11 +47,23 @@ const content = {
 };
 
 export default function Footer() {
-  // 2. 現在の言語をURLから取得
   const pathname = usePathname();
   const segments = pathname.split('/');
-  const currentLang = segments[1] || 'jp';
+  
+  const currentLang = (segments[1] || 'jp').toLowerCase();
   const t = content[currentLang] || content.jp;
+
+  // 表示するリンクの情報を、言語に応じて動的に配列として定義
+  const aboutItems = currentLang === 'en'
+    ? [ // 英語ページの場合
+        { label: t.aboutItem1, href: `/${currentLang}/about#citizenscience` },
+        { label: t.aboutItem3, href: `/${currentLang}/about#research-area` },
+      ]
+    : [ // 日本語ページの場合
+        { label: t.aboutItem1, href: `/${currentLang}/about#citizenscience` },
+        { label: t.aboutItem2, href: `/${currentLang}/about#examples` },
+        { label: t.aboutItem3, href: `/${currentLang}/about#research-area` },
+      ];
 
   return (
     <footer className={styles.footer}>
@@ -60,19 +72,15 @@ export default function Footer() {
         <div className={styles.footerLeft}>
           {/* シチズンサイエンスについて */}
           <div className={`${styles.footerBlock} ${styles.citizenscienceBlock}`}>
-            {/* 3. hrefとテキストを動的に設定 */}
             <Link href={`/${currentLang}/about`} className={styles.title}>
               {t.aboutTitle}
             </Link>
-            <Link href={`/${currentLang}/about#citizenscience`} className={styles.text}>
-              {t.aboutItem1}
-            </Link>
-            <Link href={`/${currentLang}/about#examples`} className={styles.text}>
-              {t.aboutItem2}
-            </Link>
-            <Link href={`/${currentLang}/about#research-area`} className={styles.text}>
-              {t.aboutItem3}
-            </Link>
+            {/* 上で定義した配列を map メソッドで展開し、Linkコンポーネントを生成 */}
+            {aboutItems.map((item) => (
+              <Link key={item.href} href={item.href} className={styles.text}>
+                {item.label}
+              </Link>
+            ))}
           </div>
 
           {/* 研究業績 */}
@@ -134,7 +142,7 @@ export default function Footer() {
       <div className={styles.footerinner_under}>
         <p className={styles.copyRight}>
           COPYRIGHT © FUKUOKA UNIVERSITY. ALL RIGHTS RESERVED.
-        </p>
+        </p> {/* ← ここの記述を修正しました */}
       </div>
     </footer>
   );
