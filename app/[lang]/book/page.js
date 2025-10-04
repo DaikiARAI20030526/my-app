@@ -81,7 +81,8 @@ export default async function BookPage({ params: { lang } }) {
                   <p className={styles.book_inner_left_title}>{title}</p>
                 </div>
                 <div className={styles.book_inner_left_author}>
-                  <k>{t.authors}</k>
+                  {/* 変更点: <k> を <span> に変更 */}
+                  <span>{t.authors}</span>
                   {Array.isArray(author) && author.length > 0 && (
                     <div className={styles.book_inner_left_authors}>
                       {author.map((authorItem, index) => (
@@ -94,12 +95,14 @@ export default async function BookPage({ params: { lang } }) {
                   )}
                 </div>
                 <div className={styles.book_inner_left_publisher}>
-                  <k>{t.publisher}</k>
+                  {/* 変更点: <k> を <span> に変更 */}
+                  <span>{t.publisher}</span>
                   <p>{publisher}</p>
                 </div>
                 <div className={styles.book_inner_left_bottom}>
                   <div className={styles.book_inner_left_publication}>
-                    <k>{t.publicationDate}</k>
+                    {/* 変更点: <k> を <span> に変更 */}
+                    <span>{t.publicationDate}</span>
                     <p>{publication}</p>
                   </div>
                   {url ? (
@@ -110,12 +113,14 @@ export default async function BookPage({ params: { lang } }) {
                       className={styles.book_inner_left_buttom}
                     >
                       <p>{t.moreDetails}</p>
-                      <k>→</k>
+                      {/* 変更点: <k> を <span> に変更 */}
+                      <span>→</span>
                     </a>
                   ) : (
                     <div className={styles.book_inner_left_buttom}>
                       <p>{t.comingSoon}</p>
-                      <k>×</k>
+                      {/* 変更点: <k> を <span> に変更 */}
+                      <span>×</span>
                     </div>
                   )}
                 </div>

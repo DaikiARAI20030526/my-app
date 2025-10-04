@@ -57,8 +57,9 @@
     margin-top: 8px;
   }
   
+  /* 変更点: セレクタを 'k' から 'span' に変更 */
   /* 外部リンク部分 */
-  .member_inner_2 k {
+  .member_inner_2 span {
     font-size: 12px;
   }
   
@@ -119,7 +120,7 @@
     align-items: center;
     height: 100px;
     padding: 20px 48px 15px 35px;
-    color: #e5e5e5;
+    color: #d4d5d6;
     border: solid 0.5px #e5e5e5;  /* borderを0.5pxに設定 */
     font-weight: 400;             /* font-weightを400に設定 */
     transition: none;             /* トランジション無効 */
@@ -138,7 +139,8 @@
     font-weight: 400;
   }
   
-  .member_recruiting_inner_right_button k {
+  /* 変更点: セレクタを 'k' から 'span' に変更 */
+  .member_recruiting_inner_right_button span {
     width: 50%;
     white-space: nowrap;
     font-size: 50px;
@@ -196,4 +198,3 @@
       padding: 20px 15px 15px 20px;
     }
   }
-  

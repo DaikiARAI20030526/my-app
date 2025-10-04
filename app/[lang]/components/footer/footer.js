@@ -18,8 +18,8 @@ const content = {
     researchItem4: "受賞",
     researchItem5: "講演",
     memberTitle: "研究員について",
-    memberItem1: "進行中のプロジェクト",
-    memberItem2: "お知らせ",
+    memberItem1: "お知らせ",
+    memberItem2: "進行中のプロジェクト",
     address1: "〒814-0180",
     address2: "福岡県福岡市城南区七隈8丁目19-1",
     address3: "福岡大学 商学部 経営学科　森田泰暘 研究室内",
@@ -36,9 +36,9 @@ const content = {
     researchItem3: "Books",
     researchItem4: "Awards",
     researchItem5: "Lectures",
-    memberTitle: "About Members",
-    memberItem1: "Ongoing Projects",
-    memberItem2: "News",
+    memberTitle: "About Research Members",
+    memberItem1: "News",
+    memberItem2: "Ongoing Projects",
     address1: "814-0180",
     address2: "8-19-1 Nanakuma, Jonan-ku, Fukuoka-shi, Fukuoka",
     address3: "c/o Yasuaki Morita's Office, Faculty of Commerce, Fukuoka University",
@@ -110,10 +110,10 @@ export default function Footer() {
             <Link href={`/${currentLang}/member`} className={styles.title}>
               {t.memberTitle}
             </Link>
-            <Link href={`/${currentLang}#project`} className={styles.text}>
+            <Link href={`/${currentLang}#news`} className={styles.text}>
               {t.memberItem1}
             </Link>
-            <Link href={`/${currentLang}#news`} className={styles.text}>
+            <Link href={`/${currentLang}#project`} className={styles.text}>
               {t.memberItem2}
             </Link>
           </div>

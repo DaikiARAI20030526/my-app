@@ -56,7 +56,7 @@
   
   /* 非選択状態：通常 #e5e5e5、ホバー時に #000 */
   .notSelected {
-    color: #e5e5e5;
+    color: #d4d5d6;
   }
   .notSelected:hover {
     color: #000;
@@ -75,7 +75,7 @@
   .menuTrigger {
     font-size:19.5px;
     font-weight: 400;
-    color: #e5e5e5;
+    color: #d4d5d6;
     cursor: pointer;
     margin: 0;
     white-space: nowrap;

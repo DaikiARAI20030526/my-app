@@ -145,12 +145,12 @@ export default async function TopPage({ params: { lang } }) {
         imageHoverPath="/go 1 b.png"
       />
 
-      <div id="subtitle1" className="anchorSection">
+      <div id="news" className="anchorSection">
         <TopBord bordname={t.news_title} notelink={t.note_link} />
       </div>
       <Newscardlist data={articles} />
 
-      <div id="subtitle2" className="anchorSection">
+      <div id="project" className="anchorSection">
         <TopBord bordname={t.projects_title} notelink={t.note_link} />
       </div>
       <ProjectCardList data={projectArticles} />

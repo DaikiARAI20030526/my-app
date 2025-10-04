@@ -21,7 +21,7 @@
   .notelink {
     font-size: 13px;   /* {notelink} のフォントサイズ13px */
     text-decoration: none; /* リンクの下線を消す */
-    color: #e5e5e5;       /* 通常時は #e5e5e5 */
+    color: #d4d5d6;       /* 通常時は #e5e5e5 */
     position: relative;
   }
   

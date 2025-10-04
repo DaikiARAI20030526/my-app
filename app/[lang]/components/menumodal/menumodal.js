@@ -144,7 +144,6 @@ export default function MenuModal({ onClose, variant = "a" }) {
                     </p>
                   </Link>
                 </div>
-                {/* ▼▼▼ ここから変更 ▼▼▼ */}
                 <div className={styles.rightGroupA}>
                   <Link href={`/${currentLang}/about#citizenscience`}><p className={styles.menuTextLeft} onClick={onClose}>{t.whatIsCS}</p></Link>
                   {/* currentLangが'en'でない場合のみ、csExamplesを表示 */}
@@ -153,15 +152,19 @@ export default function MenuModal({ onClose, variant = "a" }) {
                   )}
                   <Link href={`/${currentLang}/about#research-area`}><p className={styles.menuTextLeft} onClick={onClose}>{t.ourResearch}</p></Link>
                 </div>
-                {/* ▲▲▲ ここまで変更 ▲▲▲ */}
 
-                <div className={styles.rightGroupB}>
+                {/* ▼▼▼ ここが変更された箇所です ▼▼▼ */}
+                <div 
+                  className={`${styles.rightGroupB} ${currentLang === 'en' ? styles.rightGroupB_en : ''}`}
+                >
                   <Link href={`/${currentLang}/research`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/research`) ? styles.active : ""}`} onClick={onClose}>{t.papers}</p></Link>
                   <Link href={`/${currentLang}/conference`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/conference`) ? styles.active : ""}`} onClick={onClose}>{t.conference}</p></Link>
                   <Link href={`/${currentLang}/book`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/book`) ? styles.active : ""}`} onClick={onClose}>{t.books}</p></Link>
                   <Link href={`/${currentLang}/award`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/award`) ? styles.active : ""}`} onClick={onClose}>{t.awards}</p></Link>
                   <Link href={`/${currentLang}/lecture`}><p className={`${styles.menuTextLeft} ${isActive(`/${currentLang}/lecture`) ? styles.active : ""}`} onClick={onClose}>{t.lectures}</p></Link>
                 </div>
+                {/* ▲▲▲ 変更ここまで ▲▲▲ */}
+
               </div>
 
               {/* 言語スイッチ */}
@@ -206,4 +209,3 @@ export default function MenuModal({ onClose, variant = "a" }) {
     document.body
   );
 }
-

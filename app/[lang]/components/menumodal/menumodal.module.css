@@ -117,14 +117,18 @@
 .rightGroupB {
     margin-top: 20px;
 }
+
+/* ▼▼▼ ここが追加された箇所です ▼▼▼ */
+/* enの時だけ適用するマージンスタイル */
+.rightGroupB_en {
+    margin-top: 53px;
+}
+/* ▲▲▲ 追加ここまで ▲▲▲ */
+
 .rightColum1 a {
     text-decoration: none;
 }
-/* -------------------------------------------------------------------
-   ここから .menuTextLeft の挙動をカスタマイズ
-   - グループA/C: ホバー時のみ ● を表示（アクティブ時は非表示）
-   - グループB: ホバー時＆アクティブ時 ● を表示（従来どおり）
-------------------------------------------------------------------- */
+
 .menuTextLeft {
     font-size: 12px;
     margin: 0;
@@ -145,8 +149,6 @@
 .rightGroupB .menuTextLeft.active::before {
     color: #000;
 }
-/* （グループA/C に対しては .menuTextLeft.active では表示しない） */
-/* ------------------------------------------------------------------- */
 
 /* 右下部（言語スイッチ含む） */
 .rightColum2 {
@@ -252,6 +254,7 @@
     .menuLinkLeft {
         font-size: 25px;
     }
+}
 
     @media (max-width: 540px) {
         .modalInner {
@@ -283,4 +286,3 @@
             flex: 0 0 80%;
         }
     }
-}

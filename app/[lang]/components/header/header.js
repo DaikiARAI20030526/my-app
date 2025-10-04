@@ -35,7 +35,7 @@ export default function Header({ pageTitle }) {
     if (lang === currentLang) {
       return "#000";
     }
-    return hoveredLang === lang ? "#000" : "#e5e5e5";
+    return hoveredLang === lang ? "#000" : "#d4d5d6";
   };
 
   return (

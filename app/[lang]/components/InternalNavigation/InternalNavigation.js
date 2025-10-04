@@ -17,8 +17,8 @@ const content = {
     groupB_item4: "受賞",
     groupB_item5: "講演",
     groupC_top: "研究員について",
-    groupC_item1: "進行中のプロジェクト",
-    groupC_item2: "お知らせ",
+    groupC_item1: "お知らせ",
+    groupC_item2: "進行中のプロジェクト",
   },
   en: {
     groupA_top: "About Citizen Science",
@@ -31,9 +31,9 @@ const content = {
     groupB_item3: "Books",
     groupB_item4: "Awards",
     groupB_item5: "Lectures",
-    groupC_top: "About Members",
-    groupC_item1: "Ongoing Projects",
-    groupC_item2: "News",
+    groupC_top: "About Research Members",
+    groupC_item1: "News",
+    groupC_item2: "Ongoing Projects",
   },
 };
 
@@ -81,8 +81,8 @@ export default function InternalNavigation() {
       alignment: "left",
       topItems: [{ label: t.groupC_top, href: `/${currentLang}/member` }],
       bottomItems: [
-        { label: t.groupC_item1, href: `/${currentLang}#project` },
-        { label: t.groupC_item2, href: `/${currentLang}#news` },
+        { label: t.groupC_item1, href: `/${currentLang}#news` },
+        { label: t.groupC_item2, href: `/${currentLang}#project` },
       ],
     },
   ];

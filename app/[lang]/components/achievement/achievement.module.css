@@ -42,7 +42,7 @@
   /* 右側のリンク内テキスト */
   .achievement_right p {
     margin: 0;
-    color: #e5e5e5;
+    color: #d4d5d6;
     font-size: 19px;
     font-weight: 400;
     white-space: nowrap;
@@ -52,7 +52,7 @@
   .achievement_right a:not(:last-child)::after {
     content: "ー";
     margin: 1.5px 22.5px 0 22.5px;       /* テキストと「ー」の間隔調整 */
-    color: #e5e5e5 !important;
+    color: #d4d5d6 !important;
     pointer-events: none;   /* カーソルやクリック判定を無効化 */
     display: inline-block;  /* インライン要素として扱い、テキストと同じ行に配置 */
     vertical-align: middle; /* テキストの縦位置に合わせる */

@@ -6,7 +6,7 @@ const content = {
     headline: "研究メンバーについて",
   },
   en: {
-    headline: "About Members",
+    headline: "About Research Members",
   },
 };
 

@@ -80,7 +80,8 @@ export default async function MemberPage({ params: { lang } }) {
                   <p className={styles.member_inner_1a}>{name}</p>
                   <p className={styles.member_inner_1b}>{ename}</p>
                   <div className={styles.member_inner_2}>
-                    <k>{t.externalLink}</k>
+                    {/* 変更点: <k> を <span> に変更 */}
+                    <span>{t.externalLink}</span>
                     <a
                       href={url}
                       target="_blank"
@@ -126,7 +127,7 @@ export default async function MemberPage({ params: { lang } }) {
                     <br />
                     {t.externalLinkSuffix}
                   </p>
-                  <k>→</k>
+                  <span>→</span>
                 </div>
               </a>
             ) : (

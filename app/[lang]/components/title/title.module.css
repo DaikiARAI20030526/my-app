@@ -32,7 +32,7 @@
 /* 戻るテキスト：改行なし、下線なし */
 .backText {
   font-size: 20px;
-  color: #e5e5e5;
+  color: #d4d5d6;
   margin-left: 10px;
   white-space: nowrap;
   text-decoration: none !important;

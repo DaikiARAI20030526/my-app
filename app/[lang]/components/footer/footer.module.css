@@ -30,7 +30,7 @@
 .footerBlock a {
   display: inline-block;
   text-decoration: none;
-  color: #e5e5e5;
+  color: #d4d5d6;
 }
 
 /* タイトル：18px */
@@ -56,7 +56,7 @@
 .footerBlock a:not(:last-child)::after {
   content: "ー";
   margin: 0 10px;
-  color: #e5e5e5;
+  color: #d4d5d6;
 }
 
 /* 右側エリア：テキストと画像を左右端に配置 */
@@ -80,7 +80,7 @@
 .footerRight .text {
   font-size: 16px;
   margin: 0;
-  color: #e5e5e5;
+  color: #d4d5d6;
 }
 
 /* 画像コンテナ：画像を下揃えに */
