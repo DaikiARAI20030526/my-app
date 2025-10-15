@@ -66,8 +66,10 @@
       font-size: 14px;
       padding-left: 7.9%;
       margin: 0 auto;
-      text-align: justify;
-      text-justify: inter-word;
+      /* ▼▼▼ ここが変更箇所です ▼▼▼ */
+      text-align: left; /* justify から left に変更して不自然な空白を防ぐ */
+      /* text-justify: inter-word;  <-- この行は不要になるため削除します */
+      /* ▲▲▲ 変更ここまで ▲▲▲ */
       line-height: 30px;
     }
   }

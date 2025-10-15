@@ -1,10 +1,16 @@
 import { microcmsClient } from '@/lib/microcmsClient';
 import styles from './page.module.css'; 
 import Subtitle from "../components/subtitle/subtitle";
+// ▼▼▼ ここから変更 ▼▼▼
+import ResearchStickyHeader from "../components/ResearchStickyHeader/ResearchStickyHeader";
+// ▲▲▲ ここまで変更 ▲▲▲
 
 // 1. 静的なUIテキストを言語ごとに定義
 const content = {
   jp: {
+    // ▼▼▼ ページタイトル用のテキストを追加 ▼▼▼
+    pageTitle: "研究メンバーについて", 
+    // ▲▲▲ ここまで追加 ▲▲▲
     noData: "まだデータがありません",
     noGroup: "member グループがありません",
     externalLink: "外部リンク",
@@ -15,6 +21,9 @@ const content = {
     notRecruiting: "現在募集していません",
   },
   en: {
+    // ▼▼▼ ページタイトル用のテキストを追加 ▼▼▼
+    pageTitle: "About Research Members",
+    // ▲▲▲ ここまで追加 ▲▲▲
     noData: "No data available yet",
     noGroup: "'member' group not found",
     externalLink: "External Link",
@@ -57,10 +66,20 @@ export default async function MemberPage({ params: { lang } }) {
   const recruitContent = recruitData.contents?.[0] || null;
   const recruitUrl = recruitContent?.recrute2?.url || '';
 
+  // ▼▼▼ ResearchStickyHeaderに渡すpropsを定義 ▼▼▼
+  const pageTitles = [t.pageTitle];
+  const subtitleIds = ['member-list']; // メンバー一覧セクションのID
+  // ▲▲▲ ここまで定義 ▲▲▲
+
   return (
-    <>
+    // ▼▼▼ <main> タグで全体を囲む ▼▼▼
+    <main>
+      {/* ▼▼▼ ResearchStickyHeaderコンポーネントを配置 ▼▼▼ */}
+      <ResearchStickyHeader pageTitles={pageTitles} subtitleIds={subtitleIds} />
+
       {/* メンバー一覧 */}
-      <div className={styles.memberContainer}>
+      {/* ▼▼▼ id属性を付与 ▼▼▼ */}
+      <div id="member-list" className={styles.memberContainer}>
         {memberContents.map((item) => {
           const { member2 } = item;
           if (!member2) {
@@ -80,7 +99,6 @@ export default async function MemberPage({ params: { lang } }) {
                   <p className={styles.member_inner_1a}>{name}</p>
                   <p className={styles.member_inner_1b}>{ename}</p>
                   <div className={styles.member_inner_2}>
-                    {/* 変更点: <k> を <span> に変更 */}
                     <span>{t.externalLink}</span>
                     <a
                       href={url}
@@ -140,6 +158,6 @@ export default async function MemberPage({ params: { lang } }) {
       </div>
 
       <div className={styles._line}></div>
-    </>
+    </main>
   );
 }
