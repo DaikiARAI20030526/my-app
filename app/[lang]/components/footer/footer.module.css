@@ -155,10 +155,19 @@
 
 /* メディアクエリ：540px以下 */
 @media (max-width: 540px) {
-  /* 全体：footerBlock内リンクのフォントサイズを 12px に */
+  /* ▼▼▼ ここから変更 ▼▼▼ */
+  .footerBlock {
+    flex-wrap: wrap; /* アイテムの折り返しを許可 */
+    row-gap: 8px;    /* 折り返した際の行間を8pxに設定 */
+  }
+
+  /* 全体：footerBlock内リンクのフォントサイズを 13px に */
   .footerBlock a {
     font-size: 13px !important;
+    white-space: normal; /* テキストの改行を許可 */
   }
+  /* ▲▲▲ ここまで変更 ▲▲▲ */
+
   /* ただし、citizenscienceBlock内のリンクは 18px に上書き */
   .citizenscienceBlock a {
     font-size: 18px !important;

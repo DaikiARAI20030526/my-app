@@ -142,7 +142,7 @@ export default function Footer() {
       <div className={styles.footerinner_under}>
         <p className={styles.copyRight}>
           COPYRIGHT © FUKUOKA UNIVERSITY. ALL RIGHTS RESERVED.
-        </p> {/* ← ここの記述を修正しました */}
+        </p>
       </div>
     </footer>
   );
