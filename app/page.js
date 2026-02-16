@@ -1,6 +1,8 @@
-import { redirect } from 'next/navigation';
+// app/page.js
+import AboutPage from './[lang]/about/page'; // またはトップページに相当するコンポーネント
 
 export default function RootPage() {
-  // デフォルトの言語である日本語ページ（/jp）にリダイレクトする
-  redirect('/jp');
+  // リダイレクトせず、日本語版のトップページコンポーネントを直接レンダリングする
+  // params を偽装して渡すことで、AboutPage側は "jp" として動作する
+  return <AboutPage params={{ lang: 'jp' }} />;
 }

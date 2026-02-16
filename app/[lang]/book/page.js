@@ -6,6 +6,7 @@ import styles from './page.module.css';
 // 1. 静的なUIテキストを言語ごとに定義
 const content = {
   jp: {
+    pageTitle: "書籍", // ★ここに追加
     noData: "まだデータがありません",
     noGroup: "book グループがありません",
     authors: "著者",
@@ -15,6 +16,7 @@ const content = {
     comingSoon: "準備中",
   },
   en: {
+    pageTitle: "Books", // ★ここに追加
     noData: "No data available yet",
     noGroup: "'book' group not found",
     authors: "Authors",
@@ -30,6 +32,16 @@ export const revalidate = 60;
 // generateStaticParamsを追加して静的生成を有効化
 export async function generateStaticParams() {
   return [{ lang: 'jp' }, { lang: 'en' }];
+}
+
+// ★ここに追加: 動的にメタデータを生成する関数
+export async function generateMetadata({ params }) {
+  const lang = params.lang || 'jp';
+  const t = content[lang] || content.jp;
+
+  return {
+    title: t.pageTitle, // "書籍" または "Books" がセットされる
+  };
 }
 
 // 2. propsで `params` を受け取り、`lang` を取得
@@ -81,7 +93,6 @@ export default async function BookPage({ params: { lang } }) {
                   <p className={styles.book_inner_left_title}>{title}</p>
                 </div>
                 <div className={styles.book_inner_left_author}>
-                  {/* 変更点: <k> を <span> に変更 */}
                   <span>{t.authors}</span>
                   {Array.isArray(author) && author.length > 0 && (
                     <div className={styles.book_inner_left_authors}>
@@ -95,13 +106,11 @@ export default async function BookPage({ params: { lang } }) {
                   )}
                 </div>
                 <div className={styles.book_inner_left_publisher}>
-                  {/* 変更点: <k> を <span> に変更 */}
                   <span>{t.publisher}</span>
                   <p>{publisher}</p>
                 </div>
                 <div className={styles.book_inner_left_bottom}>
                   <div className={styles.book_inner_left_publication}>
-                    {/* 変更点: <k> を <span> に変更 */}
                     <span>{t.publicationDate}</span>
                     <p>{publication}</p>
                   </div>
@@ -113,13 +122,11 @@ export default async function BookPage({ params: { lang } }) {
                       className={styles.book_inner_left_buttom}
                     >
                       <p>{t.moreDetails}</p>
-                      {/* 変更点: <k> を <span> に変更 */}
                       <span>→</span>
                     </a>
                   ) : (
                     <div className={styles.book_inner_left_buttom}>
                       <p>{t.comingSoon}</p>
-                      {/* 変更点: <k> を <span> に変更 */}
                       <span>×</span>
                     </div>
                   )}

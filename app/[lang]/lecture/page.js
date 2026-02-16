@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 // 1. 静的なUIテキストを言語ごとに定義
 const content = {
   jp: {
+    pageTitle: "講演など", // 
     noData: "まだデータがありません",
     noGroup: "lecture グループがありません",
     location: "講演地名",
@@ -13,6 +14,7 @@ const content = {
     eventType: "会議種別",
   },
   en: {
+    pageTitle: "Lectures, etc.", 
     noData: "No data available yet",
     noGroup: "'lecture' group not found",
     location: "Location",
@@ -27,6 +29,16 @@ export const revalidate = 60;
 // generateStaticParamsを追加して静的生成を有効化
 export async function generateStaticParams() {
   return [{ lang: 'jp' }, { lang: 'en' }];
+}
+
+// ★動的にメタデータを生成する関数
+export async function generateMetadata({ params }) {
+  const lang = params.lang || 'jp';
+  const t = content[lang] || content.jp;
+
+  return {
+    title: t.pageTitle, // "講演など" または "Lectures, etc." がセットされる
+  };
 }
 
 // 2. propsで `params` を受け取り、`lang` を取得
