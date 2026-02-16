@@ -124,7 +124,7 @@
   text-decoration: none;
   color: #d4d5d6;
   border: solid 1.5px #e5e5e5;
-  transition: all 0.3s ease; /* ★追加: 色の変化をなめらかに */
+  transition: all 0s ease; /* ★追加: 色の変化をなめらかに */
 }
 
 /* ★追加: ホバー時の設定 */
