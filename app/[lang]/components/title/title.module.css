@@ -27,7 +27,7 @@
   transform: rotate(180deg);
   display: block;
   /* なめらかに色を変えるためのトランジション */
-  transition: filter 0.2s ease; 
+  transition: filter 0s ease; 
 }
 
 /* 戻るテキスト */
@@ -38,7 +38,7 @@
   white-space: nowrap;
   text-decoration: none !important;
   /* なめらかに色を変えるためのトランジション */
-  transition: color 0.2s ease; 
+  transition: color 0s ease; 
 }
 
 /* ▼▼▼ ここが修正の肝です ▼▼▼ */

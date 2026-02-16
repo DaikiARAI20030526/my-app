@@ -113,34 +113,46 @@
   letter-spacing: 1.8px;
 }
 
-/* 下部リンクエリア */
+/* 下部リンクエリア（修正箇所） */
 .reserch_inner_right_bottom {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* ★変更: 左右両端に配置 */
   height: 100px;
   margin-top: 13px;
-  padding: 20px 48px 15px 35px;
+  padding: 20px 35px 15px 35px; /* 右側のpaddingを調整 */
   text-decoration: none;
   color: #d4d5d6;
   border: solid 1.5px #e5e5e5;
+  transition: all 0.3s ease; /* ★追加: 色の変化をなめらかに */
 }
+
+/* ★追加: ホバー時の設定 */
+.reserch_inner_right_bottom:hover {
+  color: #000000;       /* 文字と矢印を黒く */
+  border-color: #000000; /* 枠線も黒く */
+  cursor: pointer;
+}
+
 .reserch_inner_right_bottom p {
-  width: 50%;
+  /* width: 50%; ★削除: 自動幅にして両端配置を有効にする */
   white-space: nowrap;
   margin: 0;
   font-size: 18px;
   font-weight: 500;
 }
 
-/* 新規追加：以前 “k” 用の代替クラス */
+/* 以前 "k" 用だった代替クラス */
 .label {
   font-size: 12px;
 }
+
+/* 矢印用のクラス（JSで適用） */
 .arrow {
-  width: 50%;
+  /* width: 50%; ★削除 */
   white-space: nowrap;
-  font-size: 50px;
-  text-align: right;
+  font-size: 30px; /* サイズ調整 */
+  margin-bottom: 5px !important; /* 位置微調整 */
 }
 
 /* === メディアクエリ：540px以下の場合 === */
@@ -173,7 +185,7 @@
     margin-bottom: 19px;
   }
   
-  /* 5. 各要素の表示順序（1: dynamicTitle, 2: 著者, 3: 掲載誌, 4: 掲載年月, 5: 概要, 6: 下部リンク） */
+  /* 5. 各要素の表示順序 */
   .dynamicTitle {
     order: 1;
   }
