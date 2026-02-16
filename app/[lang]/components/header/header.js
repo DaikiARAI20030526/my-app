@@ -12,9 +12,18 @@ export default function Header({ pageTitle }) {
   const [hoveredLang, setHoveredLang] = useState(null);
   const [headerTitle, setHeaderTitle] = useState("");
   
-  const segments = pathname.split('/');
-  const currentLang = segments[1] || 'jp'; // 'jp' or 'en'
-  const basePath = segments.slice(2).join('/');
+  // ▼▼▼ 修正箇所 1：言語とパスの判定ロジックを変更 ▼▼▼
+  // URLが '/en' で始まるかどうかで現在の言語を判定
+  const isEnglish = pathname.startsWith('/en');
+  const currentLang = isEnglish ? 'en' : 'jp';
+
+  // 言語プレフィックス(/en や /jp)を除去した「純粋なパス」を抽出
+  // 例: "/en/about" -> "about", "/about" -> "about", "/" -> ""
+  const basePath = pathname
+    .replace(/^\/en/, '') // 先頭の /en を削除
+    .replace(/^\/jp/, '') // 念のため /jp があっても削除（移行期間用）
+    .replace(/^\//, '');  // 先頭に残ったスラッシュを削除
+  // ▲▲▲ 修正箇所 1 終了 ▲▲▲
 
   useEffect(() => {
     if (pageTitle && pageTitle.trim().length > 0) {
@@ -44,7 +53,8 @@ export default function Header({ pageTitle }) {
         <div className={styles.topTitleInner}>
           <div className={styles.logoAndArrow}>
             <div className={styles.logoInner}>
-              <Link href={`/${currentLang}`}>
+              {/* ▼▼▼ 修正箇所 2：ロゴのリンク先修正（日本語ならルートへ） ▼▼▼ */}
+              <Link href={currentLang === 'en' ? '/en' : '/'}>
                 <img
                   src="/B-vertical-J.png"
                   alt="アイコン"
@@ -56,13 +66,13 @@ export default function Header({ pageTitle }) {
           <div className={styles.headerTitle}>
             <p>{headerTitle}</p>
           </div>
-          {/* ▼▼▼ このdivタグに style を追加しました ▼▼▼ */}
           <div 
             className={styles.rightSide} 
             style={{ gap: currentLang === 'en' ? '72.7px' : '50px' }}
           >
             <div className={styles.languageSwitch}>
-              <Link href={`/jp/${basePath}`}>
+              {/* ▼▼▼ 修正箇所 3：JPリンクから /jp を削除（ルート相対にする） ▼▼▼ */}
+              <Link href={basePath ? `/${basePath}` : '/'}>
                 <p
                   className={styles.langText}
                   style={{ color: getEffectiveColor("jp") }}
@@ -73,7 +83,8 @@ export default function Header({ pageTitle }) {
                 </p>
               </Link>
               <span className={styles.langSlash}>/</span>
-              <Link href={`/en/${basePath}`}>
+              {/* ▼▼▼ 修正箇所 4：ENリンクは /en をつける ▼▼▼ */}
+              <Link href={basePath ? `/en/${basePath}` : '/en'}>
                 <p
                   className={styles.langText}
                   style={{ color: getEffectiveColor("en") }}
