@@ -10,9 +10,9 @@
 .reserch_bottomline {
   width: 89.4%;
   border-bottom: 0.3px solid #d9d9d9;
-  margin: 0 auto;
+  margin: 0 auto;         /* コンテナ自体を中央配置 */
   display: flex;
-  justify-content: center;
+  justify-content: center; /* 横方向の中央揃え */
   align-items: center;
 }
 
@@ -41,26 +41,41 @@
   margin: 0;
 }
 
-/* 概要（日本語用デフォルト） */
-.reserch_inner_left_overview {
+/* ▼▼▼ 概要（Overview）のスタイル定義 ▼▼▼ */
+
+/* 共通ベーススタイル */
+.overview_base {
   width: 108%;
   font-size: 14px;
   font-weight: 400;
-  line-height: normal;
-  letter-spacing: 2.52px; /* 日本語用の広めの字間 */
-  white-space: normal;
-  text-align: justify;    /* 日本語用の均等割り付け */
-  word-break: break-word;
   margin: 0;
   padding-top: 40px;
+  white-space: normal;
+  word-break: break-word;
 }
 
-/* ★追加: 英語用オーバーライドクラス */
-.overview_en {
-  letter-spacing: 0.5px !important; /* 英語用に字間を詰める */
-  text-align: left !important;      /* 英語は左揃えが自然（空白が広がらない） */
-  line-height: 1.6 !important;      /* 英語文章の可読性を高める */
+/* 日本語用のスタイル（既存デザイン） */
+.overview_jp {
+  composes: overview_base;
+  line-height: normal;
+  letter-spacing: 2.52px; /* 日本語用の広い字間 */
+  text-align: justify;    /* 箱組 */
 }
+
+/* 英語用のスタイル（新規追加） */
+.overview_en {
+  composes: overview_base;
+  line-height: 1.6;       /* 英語は少し行間を開けて読みやすく */
+  letter-spacing: 0.5px;  /* 英語用の標準的な字間 */
+  text-align: justify;    /* 箱組（両端揃え） */
+  
+  /* ▼重要: 英単語のハイフネーションを有効化し、箱組時の不自然な空白を防ぐ */
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+/* ▲▲▲ 概要スタイル終了 ▲▲▲ */
+
 
 /* 右カラム */
 .reserch_inner_right {
@@ -97,7 +112,7 @@
   white-space: nowrap;
 }
 
-/* 著者フィールドの各要素 */
+/* 著者フィールドの各要素（aboutauthor / separator）を横並びに */
 .authorRow {
   display: flex;
   flex-direction: row;
@@ -124,19 +139,20 @@
 .reserch_inner_right_bottom {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* 左右両端に配置 */
   height: 100px;
   margin-top: 13px;
   padding: 20px 35px 15px 35px;
   text-decoration: none;
   color: #d4d5d6;
   border: solid 1.5px #e5e5e5;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* なめらかな色変化 */
 }
 
+/* ホバー時の設定 */
 .reserch_inner_right_bottom:hover {
-  color: #000000;
-  border-color: #000000;
+  color: #000000;       /* 文字と矢印を黒く */
+  border-color: #000000; /* 枠線も黒く */
   cursor: pointer;
 }
 
@@ -147,28 +163,33 @@
   font-weight: 500;
 }
 
+/* 以前 "k" 用だった代替クラス */
 .label {
   font-size: 12px;
 }
 
+/* 矢印用のクラス */
 .arrow {
   white-space: nowrap;
-  font-size: 30px;
+  font-size: 30px; 
   margin-bottom: 5px !important;
 }
 
 /* === メディアクエリ：540px以下の場合 === */
 @media (max-width: 540px) {
+  /* 1. 内側コンテナの縦並びおよび左右の padding を6.6%に調整 */
   .reserch_inner {
     flex-direction: column;
     padding: 25px 6.6% 45px 6.6%;
   }
   
+  /* 2. 左カラムと右カラムをフラットにして、親直下に配置 */
   .reserch_inner_left,
   .reserch_inner_right {
     display: contents;
   }
   
+  /* 3. 右カラム内の p 要素の上マージンを5pxに（細かい調整） */
   .reserch_inner_right p {
     margin-top: 5px;
   }
@@ -179,10 +200,12 @@
     gap: 5px;
   }
   
+  /* 4. 左カラムのタイトル下に余白を追加 */
   .reserch_inner_left_title {
     margin-bottom: 19px;
   }
   
+  /* 5. 各要素の表示順序 */
   .dynamicTitle {
     order: 1;
   }
@@ -197,10 +220,15 @@
   .reserch_inner_right_publicationDate {
     order: 4;
   }
-  .reserch_inner_left_overview {
+  
+  /* 概要部分：クラス名が変わってもここで指定可能 */
+  .overview_base, 
+  .overview_jp, 
+  .overview_en {
     order: 5;
     padding-top: 28px;
   }
+  
   .reserch_inner_right_bottom {
     order: 6;
     margin-top: 24px;

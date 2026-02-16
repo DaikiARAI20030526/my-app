@@ -44,6 +44,13 @@ export async function generateMetadata({ params }) {
   };
 }
 
+// ▼▼▼ 追加: 日本語文字（ひらがな・カタカナ・漢字）が含まれているか判定する関数 ▼▼▼
+function containsJapanese(text) {
+  if (!text) return false;
+  // ひらがな、カタカナ、漢字の範囲を正規表現でチェック
+  return /[ぁ-んァ-ン一-龠]/.test(text);
+}
+
 export default async function ResearchPage({ params: { lang } }) {
   const t = content[lang] || content.jp;
 
@@ -82,6 +89,12 @@ export default async function ResearchPage({ params: { lang } }) {
         // MicroCMSのデータは常に日本語フィールドをそのまま使用
         const { title, overview, magazine, publicationDate, author, url } = research2;
 
+        // ▼▼▼ コンテンツ自体が日本語を含んでいるか判定 ▼▼▼
+        const isJapaneseText = containsJapanese(overview);
+        
+        // 判定結果に応じてクラスを選択
+        const overviewClass = isJapaneseText ? styles.overview_jp : styles.overview_en;
+
         return (
           <div key={item.id} className={styles.reserch}>
             <div className={styles.reserch_inner}>
@@ -90,9 +103,12 @@ export default async function ResearchPage({ params: { lang } }) {
                 <div id={`researchTitle-${item.id}`} className="dynamicTitle">
                   <p className={`${styles.reserch_inner_left_title} font-stretched`}>{title}</p>
                 </div>
-                {/* ★修正: 英語の場合のみ専用クラス(overview_en)を追加してスタイルを調整 */}
+                
+                {/* ▼▼▼ 修正: 判定したクラスとlang属性を適用 ▼▼▼ */}
                 <p 
-                  className={`${styles.reserch_inner_left_overview} font-stretched ${lang === 'en' ? styles.overview_en : ''}`}
+                  className={`${overviewClass} font-stretched`}
+                  // hyphens: auto を効かせるために lang 属性を明示的に指定
+                  lang={isJapaneseText ? "ja" : "en"}
                 >
                   {overview}
                 </p>
