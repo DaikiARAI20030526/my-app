@@ -12,17 +12,20 @@ export default function Header({ pageTitle }) {
   const [hoveredLang, setHoveredLang] = useState(null);
   const [headerTitle, setHeaderTitle] = useState("");
   
-  // ▼▼▼ 修正箇所 1：言語とパスの判定ロジックを変更 ▼▼▼
-  // URLが '/en' で始まるかどうかで現在の言語を判定
+  // ▼▼▼ 修正箇所 1：言語判定とパス抽出ロジックの整理 ▼▼▼
+  
+  // 1. 言語判定: URLが /en で始まっているかどうか
   const isEnglish = pathname.startsWith('/en');
   const currentLang = isEnglish ? 'en' : 'jp';
 
-  // 言語プレフィックス(/en や /jp)を除去した「純粋なパス」を抽出
-  // 例: "/en/about" -> "about", "/about" -> "about", "/" -> ""
+  // 2. パス抽出: URLから言語部分(/enや/jp)を取り除いた「ページ部分」を取得
+  // 正規表現の意味: 行頭(^)にある /en または /jp に続き、スラッシュ(/)か行末($)が来るものだけを削除
+  // これにより /entertainment などの誤判定を防ぎます
   const basePath = pathname
-    .replace(/^\/en/, '') // 先頭の /en を削除
-    .replace(/^\/jp/, '') // 念のため /jp があっても削除（移行期間用）
-    .replace(/^\//, '');  // 先頭に残ったスラッシュを削除
+    .replace(/^\/en(\/|$)/, '') // /en/ または /en を削除
+    .replace(/^\/jp(\/|$)/, '') // /jp/ または /jp を削除
+    .replace(/^\//, '');        // 先頭に残ったスラッシュがあれば削除
+
   // ▲▲▲ 修正箇所 1 終了 ▲▲▲
 
   useEffect(() => {
@@ -53,8 +56,8 @@ export default function Header({ pageTitle }) {
         <div className={styles.topTitleInner}>
           <div className={styles.logoAndArrow}>
             <div className={styles.logoInner}>
-              {/* ▼▼▼ 修正箇所 2：ロゴのリンク先修正（日本語ならルートへ） ▼▼▼ */}
-              <Link href={currentLang === 'en' ? '/en' : '/'}>
+              {/* ▼▼▼ 修正箇所 2：ロゴのリンク先 (英語なら/en、日本語なら/) ▼▼▼ */}
+              <Link href={isEnglish ? '/en' : '/'}>
                 <img
                   src="/B-vertical-J.png"
                   alt="アイコン"
@@ -71,7 +74,7 @@ export default function Header({ pageTitle }) {
             style={{ gap: currentLang === 'en' ? '72.7px' : '50px' }}
           >
             <div className={styles.languageSwitch}>
-              {/* ▼▼▼ 修正箇所 3：JPリンクから /jp を削除（ルート相対にする） ▼▼▼ */}
+              {/* ▼▼▼ 修正箇所 3：JPボタン (常に /basePath または / へ) ▼▼▼ */}
               <Link href={basePath ? `/${basePath}` : '/'}>
                 <p
                   className={styles.langText}
@@ -83,7 +86,7 @@ export default function Header({ pageTitle }) {
                 </p>
               </Link>
               <span className={styles.langSlash}>/</span>
-              {/* ▼▼▼ 修正箇所 4：ENリンクは /en をつける ▼▼▼ */}
+              {/* ▼▼▼ 修正箇所 4：ENボタン (常に /en/basePath または /en へ) ▼▼▼ */}
               <Link href={basePath ? `/en/${basePath}` : '/en'}>
                 <p
                   className={styles.langText}

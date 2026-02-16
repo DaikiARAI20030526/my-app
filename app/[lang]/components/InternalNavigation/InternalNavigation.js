@@ -23,7 +23,7 @@ const content = {
   en: {
     groupA_top: "About Citizen Science",
     groupA_item1: "What is Citizen Science?",
-    groupA_item2: "Examples in Practice", // この項目は非表示になる
+    groupA_item2: "Examples in Practice",
     groupA_item3: "Research Area of Our Center",
     groupB_top: "Research",
     groupB_item1: "Papers",
@@ -39,53 +39,65 @@ const content = {
 
 export default function InternalNavigation() {
   const pathname = usePathname();
-  const segments = pathname.split('/');
-  const currentLang = segments[1] || 'jp';
-  const t = content[currentLang] || content.jp;
 
-  // ▼▼▼ ここから変更 ▼▼▼
+  // ▼▼▼ 修正箇所 1: 言語判定とプレフィックスの設定 ▼▼▼
+  // URLが /en で始まっているかで判定
+  const isEnglish = pathname.startsWith('/en');
+  const currentLang = isEnglish ? 'en' : 'jp';
+
+  // リンクの頭につける文字
+  // 英語なら "/en", 日本語なら "" (空文字) にする
+  const prefix = isEnglish ? '/en' : '';
+  
+  const t = content[currentLang] || content.jp;
+  // ▲▲▲ 修正箇所 1 終了 ▲▲▲
+
+
+  // ▼▼▼ 修正箇所 2: リンク生成部分を ${prefix} を使う形に変更 ▼▼▼
+  
   // `bottomItems` の内容を言語に応じて動的に変更
-  const groupABottomItems = currentLang === 'en'
+  const groupABottomItems = isEnglish
     ? [ // enページの場合
-        { label: t.groupA_item1, href: `/${currentLang}/about#citizenscience` },
-        { label: t.groupA_item3, href: `/${currentLang}/about#research-area` },
+        { label: t.groupA_item1, href: `${prefix}/about#citizenscience` },
+        { label: t.groupA_item3, href: `${prefix}/about#research-area` },
       ]
     : [ // jpページの場合
-        { label: t.groupA_item1, href: `/${currentLang}/about#citizenscience` },
-        { label: t.groupA_item2, href: `/${currentLang}/about#examples` },
-        { label: t.groupA_item3, href: `/${currentLang}/about#researcharea` },
+        { label: t.groupA_item1, href: `${prefix}/about#citizenscience` },
+        { label: t.groupA_item2, href: `${prefix}/about#examples` },
+        { label: t.groupA_item3, href: `${prefix}/about#researcharea` },
       ];
-  // ▲▲▲ ここまで変更 ▲▲▲
 
   const groups = [
     {
       groupName: "a",
       alignment: "left",
-      topItems: [{ label: t.groupA_top, href: `/${currentLang}/about` }],
-      bottomItems: groupABottomItems, // 動的に生成した配列を使用
+      topItems: [{ label: t.groupA_top, href: `${prefix}/about` }],
+      bottomItems: groupABottomItems,
     },
     {
       groupName: "b",
       alignment: "center",
-      topItems: [{ label: t.groupB_top, href: `/${currentLang}/research` }],
+      topItems: [{ label: t.groupB_top, href: `${prefix}/research` }],
       bottomItems: [
-        { label: t.groupB_item1, href: `/${currentLang}/research` },
-        { label: t.groupB_item2, href: `/${currentLang}/conference` },
-        { label: t.groupB_item3, href: `/${currentLang}/book` },
-        { label: t.groupB_item4, href: `/${currentLang}/award` },
-        { label: t.groupB_item5, href: `/${currentLang}/lecture` },
+        { label: t.groupB_item1, href: `${prefix}/research` },
+        { label: t.groupB_item2, href: `${prefix}/conference` },
+        { label: t.groupB_item3, href: `${prefix}/book` },
+        { label: t.groupB_item4, href: `${prefix}/award` },
+        { label: t.groupB_item5, href: `${prefix}/lecture` },
       ],
     },
     {
       groupName: "c",
       alignment: "left",
-      topItems: [{ label: t.groupC_top, href: `/${currentLang}/member` }],
+      topItems: [{ label: t.groupC_top, href: `${prefix}/member` }],
       bottomItems: [
-        { label: t.groupC_item1, href: `/${currentLang}#news` },
-        { label: t.groupC_item2, href: `/${currentLang}#project` },
+        // アンカーリンクの場合も prefix をつける (例: /#news または /en/#news)
+        { label: t.groupC_item1, href: `${prefix}/#news` },
+        { label: t.groupC_item2, href: `${prefix}/#project` },
       ],
     },
   ];
+  // ▲▲▲ 修正箇所 2 終了 ▲▲▲
 
   return (
     <div className={styles.wrapper}>
@@ -112,4 +124,3 @@ export default function InternalNavigation() {
     </div>
   );
 }
-

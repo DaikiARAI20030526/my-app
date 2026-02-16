@@ -11,9 +11,18 @@ export default function TopTitle() {
   const [hoveredLang, setHoveredLang] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const segments = pathname.split('/');
-  const currentLang = segments[1] || 'jp';
-  const basePath = segments.slice(2).join('/');
+  // ▼▼▼ 修正箇所 1: 言語判定とパス抽出ロジック ▼▼▼
+  // URLが /en で始まっているかで判定
+  const isEnglish = pathname.startsWith('/en');
+  const currentLang = isEnglish ? 'en' : 'jp';
+
+  // /en や /jp を取り除いた純粋なパスを抽出
+  // (例: "/en/about" -> "about", "/about" -> "about")
+  const basePath = pathname
+    .replace(/^\/en(\/|$)/, '') // /en または /en/ を削除
+    .replace(/^\/jp(\/|$)/, '') // /jp または /jp/ を削除
+    .replace(/^\//, '');        // 先頭に残ったスラッシュを削除
+  // ▲▲▲ 修正箇所 1 終了 ▲▲▲
 
   const getEffectiveColor = (lang) => {
     if (lang === currentLang) {
@@ -31,7 +40,8 @@ export default function TopTitle() {
       <div className={styles.top_title}>
         <div className={styles.top_title_inner}>
           <div className={styles.logo_inner}>
-            <Link href={`/${currentLang}`}>
+            {/* ▼▼▼ 修正箇所 2: ロゴリンク先修正 (日本語ならルートへ) ▼▼▼ */}
+            <Link href={isEnglish ? '/en' : '/'}>
               <img src="/B-h-L-E.png" alt="アイコン" />
             </Link>
           </div>
@@ -41,8 +51,12 @@ export default function TopTitle() {
             style={{ gap: currentLang === 'en' ? '72.8px' : '50px' }}
           >
             <div className={styles.languageSwitch}>
-              {/* ▼▼▼ ここに scroll={false} を追加 ▼▼▼ */}
-              <Link href={`/jp/${basePath}`} className={styles.langLink} scroll={false}>
+              {/* ▼▼▼ 修正箇所 3: JPリンク修正 (/jpなし) ▼▼▼ */}
+              <Link 
+                href={basePath ? `/${basePath}` : '/'} 
+                className={styles.langLink} 
+                scroll={false}
+              >
                 <p
                   className={styles.langText}
                   style={{
@@ -57,8 +71,12 @@ export default function TopTitle() {
                 </p>
               </Link>
               <span className={styles.langSlash}>/</span>
-              {/* ▼▼▼ ここに scroll={false} を追加 ▼▼▼ */}
-              <Link href={`/en/${basePath}`} className={styles.langLink} scroll={false}>
+              {/* ▼▼▼ 修正箇所 4: ENリンク修正 (/enあり) ▼▼▼ */}
+              <Link 
+                href={basePath ? `/en/${basePath}` : '/en'} 
+                className={styles.langLink} 
+                scroll={false}
+              >
                 <p
                   className={styles.langText}
                   style={{

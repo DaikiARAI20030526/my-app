@@ -48,21 +48,28 @@ const content = {
 
 export default function Footer() {
   const pathname = usePathname();
-  const segments = pathname.split('/');
   
-  const currentLang = (segments[1] || 'jp').toLowerCase();
+  // ▼▼▼ 修正箇所 1: 言語判定とプレフィックスの設定 ▼▼▼
+  // URLが /en で始まっているかで判定
+  const isEnglish = pathname.startsWith('/en');
+  const currentLang = isEnglish ? 'en' : 'jp';
+
+  // リンクの頭につける文字
+  // 英語なら "/en", 日本語なら "" (空文字) にする
+  const prefix = isEnglish ? '/en' : '';
+  
   const t = content[currentLang] || content.jp;
 
-  // 表示するリンクの情報を、言語に応じて動的に配列として定義
-  const aboutItems = currentLang === 'en'
+  // ▼▼▼ 修正箇所 2: リンク生成部分を ${prefix} を使う形に変更 ▼▼▼
+  const aboutItems = isEnglish
     ? [ // 英語ページの場合
-        { label: t.aboutItem1, href: `/${currentLang}/about#citizenscience` },
-        { label: t.aboutItem3, href: `/${currentLang}/about#researcharea` },
+        { label: t.aboutItem1, href: `${prefix}/about#citizenscience` },
+        { label: t.aboutItem3, href: `${prefix}/about#researcharea` },
       ]
     : [ // 日本語ページの場合
-        { label: t.aboutItem1, href: `/${currentLang}/about#citizenscience` },
-        { label: t.aboutItem2, href: `/${currentLang}/about#examples` },
-        { label: t.aboutItem3, href: `/${currentLang}/about#researcharea` },
+        { label: t.aboutItem1, href: `${prefix}/about#citizenscience` },
+        { label: t.aboutItem2, href: `${prefix}/about#examples` },
+        { label: t.aboutItem3, href: `${prefix}/about#researcharea` },
       ];
 
   return (
@@ -72,10 +79,9 @@ export default function Footer() {
         <div className={styles.footerLeft}>
           {/* シチズンサイエンスについて */}
           <div className={`${styles.footerBlock} ${styles.citizenscienceBlock}`}>
-            <Link href={`/${currentLang}/about`} className={styles.title}>
+            <Link href={`${prefix}/about`} className={styles.title}>
               {t.aboutTitle}
             </Link>
-            {/* 上で定義した配列を map メソッドで展開し、Linkコンポーネントを生成 */}
             {aboutItems.map((item) => (
               <Link key={item.href} href={item.href} className={styles.text}>
                 {item.label}
@@ -85,35 +91,37 @@ export default function Footer() {
 
           {/* 研究業績 */}
           <div className={styles.footerBlock}>
-            <Link href={`/${currentLang}/research`} className={styles.title}>
+            <Link href={`${prefix}/research`} className={styles.title}>
               {t.researchTitle}
             </Link>
-            <Link href={`/${currentLang}/research`} className={styles.text}>
+            <Link href={`${prefix}/research`} className={styles.text}>
               {t.researchItem1}
             </Link>
-            <Link href={`/${currentLang}/conference`} className={styles.text}>
+            <Link href={`${prefix}/conference`} className={styles.text}>
               {t.researchItem2}
             </Link>
-            <Link href={`/${currentLang}/book`} className={styles.text}>
+            <Link href={`${prefix}/book`} className={styles.text}>
               {t.researchItem3}
             </Link>
-            <Link href={`/${currentLang}/award`} className={styles.text}>
+            <Link href={`${prefix}/award`} className={styles.text}>
               {t.researchItem4}
             </Link>
-            <Link href={`/${currentLang}/lecture`} className={styles.text}>
+            <Link href={`${prefix}/lecture`} className={styles.text}>
               {t.researchItem5}
             </Link>
           </div>
 
           {/* 研究員について */}
           <div className={styles.footerBlock}>
-            <Link href={`/${currentLang}/member`} className={styles.title}>
+            <Link href={`${prefix}/member`} className={styles.title}>
               {t.memberTitle}
             </Link>
-            <Link href={`/${currentLang}#news`} className={styles.text}>
+            {/* トップページへのアンカーリンク */}
+            {/* prefixが空の場合は "/#news"、英語の場合は "/en/#news" となる */}
+            <Link href={`${prefix}/#news`} className={styles.text}>
               {t.memberItem1}
             </Link>
-            <Link href={`/${currentLang}#project`} className={styles.text}>
+            <Link href={`${prefix}/#project`} className={styles.text}>
               {t.memberItem2}
             </Link>
           </div>
@@ -128,7 +136,7 @@ export default function Footer() {
             <p className={styles.text}>{t.address4}</p>
           </div>
           <div className={styles.imageContainer}>
-            <Link href="https://note.com/csrc">
+            <Link href="https://note.com/csrc" target="_blank" rel="noopener noreferrer">
               <img
                 src="/icon.png"
                 alt="アイコン"

@@ -23,11 +23,19 @@ const content = {
 };
 
 export default function Achievement() {
-  // 2. 現在の言語をURLから取得
   const pathname = usePathname();
-  const segments = pathname.split('/');
-  const currentLang = segments[1] || 'jp';
+
+  // ▼▼▼ 修正箇所 1: 言語判定とプレフィックスの設定 ▼▼▼
+  // URLが /en で始まっているかで判定
+  const isEnglish = pathname.startsWith('/en');
+  const currentLang = isEnglish ? 'en' : 'jp';
+
+  // リンクの頭につける文字
+  // 英語なら "/en", 日本語なら "" (空文字) にする
+  const prefix = isEnglish ? '/en' : '';
+  
   const t = content[currentLang] || content.jp;
+  // ▲▲▲ 修正箇所 1 終了 ▲▲▲
 
   // 3. ナビゲーション項目を配列として定義
   const navItems = [
@@ -43,15 +51,17 @@ export default function Achievement() {
       {/* 左側：アクティブな項目のテキストを表示 */}
       <div className={styles.achievement_left}>
         {navItems.map(item => (
-          pathname === `/${currentLang}/${item.slug}` && <p key={item.slug}>{item.label}</p>
+          // ▼▼▼ 修正箇所 2: パス比較ロジックの変更 (/${currentLang}/... を ${prefix}/... に) ▼▼▼
+          pathname === `${prefix}/${item.slug}` && <p key={item.slug}>{item.label}</p>
         ))}
       </div>
 
       {/* 右側：非アクティブな項目をリンクとして表示 */}
       <div className={styles.achievement_right}>
         {navItems.map(item => (
-          pathname !== `/${currentLang}/${item.slug}` && (
-            <Link key={item.slug} href={`/${currentLang}/${item.slug}`}>
+          // ▼▼▼ 修正箇所 3: リンク生成ロジックの変更 ▼▼▼
+          pathname !== `${prefix}/${item.slug}` && (
+            <Link key={item.slug} href={`${prefix}/${item.slug}`}>
               <p>{item.label}</p>
             </Link>
           )
