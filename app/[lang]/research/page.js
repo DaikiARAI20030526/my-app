@@ -90,7 +90,12 @@ export default async function ResearchPage({ params: { lang } }) {
                 <div id={`researchTitle-${item.id}`} className="dynamicTitle">
                   <p className={`${styles.reserch_inner_left_title} font-stretched`}>{title}</p>
                 </div>
-                <p className={`${styles.reserch_inner_left_overview} font-stretched`}>{overview}</p>
+                {/* ★修正: 英語の場合のみ専用クラス(overview_en)を追加してスタイルを調整 */}
+                <p 
+                  className={`${styles.reserch_inner_left_overview} font-stretched ${lang === 'en' ? styles.overview_en : ''}`}
+                >
+                  {overview}
+                </p>
               </div>
 
               {/* 右カラム */}
@@ -140,7 +145,6 @@ export default async function ResearchPage({ params: { lang } }) {
                       <br />
                       {t.externalLink}
                     </p>
-                    {/* ★矢印にクラスを追加してスタイル制御 */}
                     <p className={styles.arrow}>→</p>
                   </a>
                 ) : (
